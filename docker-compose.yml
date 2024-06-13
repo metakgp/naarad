@@ -20,6 +20,11 @@ services:
         start_period: 40s
     restart: unless-stopped
 
+networks:
+  metaploy-network:
+    external: true
+    name: metaploy-network
+
 volumes:
   nginx-config-volume:
     external: true
