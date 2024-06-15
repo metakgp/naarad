@@ -159,10 +159,12 @@ attachment-expiry-duration: "72h"
 # - web-push-email-address is the admin email address send to the push provider, e.g. `sysadmin@example.com`
 # - web-push-startup-queries is an optional list of queries to run on startup`
 #
+########### Web Push is ENABLED ############
 # web-push-public-key:
 # web-push-private-key:
-# web-push-file:
 # web-push-email-address:
+# web-push-file:
+#### enabled via environment variables #####
 # web-push-startup-queries:
 
 # If enabled, ntfy can perform voice calls via Twilio via the "X-Call" header.

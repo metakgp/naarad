@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - TZ=IST
+    env_file:
+      - .env
     networks:
       metaploy-network:
         aliases:
