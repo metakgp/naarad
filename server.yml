@@ -91,8 +91,8 @@ cache-duration: "24h"
 #   If you are running ntfy with systemd, make sure this user database file is owned by the
 #   ntfy user and group by running: chown ntfy.ntfy <filename>.
 #
-# auth-file: <filename>
-# auth-default-access: "read-write"
+auth-file: /var/lib/ntfy/user.db
+auth-default-access: "deny-all"
 # auth-startup-queries:
 
 # If set, the X-Forwarded-For header is used to determine the visitor IP address

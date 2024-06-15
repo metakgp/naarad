@@ -12,6 +12,7 @@ services:
     volumes:
       - nginx-config-volume:/etc/nginx/sites-enabled
       - naarad-cache:/var/cache/ntfy
+      - naarad-auth:/var/lib/ntfy
     healthcheck:
         test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:8000/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
         interval: 60s
@@ -30,3 +31,4 @@ volumes:
     external: true
     name: metaploy-nginx-config-volume
   naarad-cache:
+  naarad-auth:
