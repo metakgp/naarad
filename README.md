@@ -20,7 +20,7 @@
      <img width="140" alt="image" src="https://raw.githubusercontent.com/metakgp/design/main/logos/logo.jpg">
   </a>
 
-  <h3 align="center">naarad</h3>
+  <h3 align="center">Naarad</h3>
 
   <p align="center">
     <i>Self-hosted ntfy server, serving kgpians, maintained by metaKGP</i>
@@ -52,7 +52,7 @@
 ## About The Project
 <div align="center">
   <a href="https://github.com/metakgp/naarad">
-    <img width="80%" alt="image" src="https://user-images.githubusercontent.com/86282911/206632547-a3b34b47-e7ae-4186-a1e6-ecda7ddb38e6.png">
+    <img width="80%" alt="image" src="https://github.com/metakgp/naarad/assets/86282911/92f1e4dc-d074-4bd5-82a9-929f05ebff19">
   </a>
 </div>
 
