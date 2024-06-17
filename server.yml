@@ -208,7 +208,7 @@ keepalive-interval: "45s"
 # the values "app" (maps to "/"), "home" (maps to "/app"), or "disable" (maps to "") to disable
 # the web app entirely.
 #
-web-root: "/"
+web-root: "/web"
 
 # Various feature flags used to control the web app, and API access, mainly around user and
 # account management.
