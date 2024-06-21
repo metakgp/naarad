@@ -11,7 +11,7 @@ export const Register: Component = () => {
     const [getUprChk, setUprChk] = createSignal(false)
     const [getNumChk, setNumChk] = createSignal(false)
 
-    const [btnDis, setBtnDis] = createSignal(true)
+    const [pswdChk, setPswdChk] = createSignal(true)
     
 
     const pswdChange = (pswd: string) => {
@@ -22,9 +22,9 @@ export const Register: Component = () => {
         setNumChk(/[0-9]/.test(pswd))
         setPswd(pswd);
         if (getLenChk() && getLwrChk() && getUprChk() && getNumChk()){
-            setBtnDis(false)
+            setPswdChk(false)
         }else{
-            setBtnDis(true)
+            setPswdChk(true)
         }
     }
 
@@ -56,7 +56,7 @@ export const Register: Component = () => {
                     </div>
                 </div>
                 <div class="pswd-chk">
-                    <div class="pswd-chk-title" hidden={!btnDis()}>Password Must Contain: </div>
+                    <div class="pswd-chk-title" hidden={!pswdChk()}>Password Must Contain: </div>
                     <ul>
                         <li hidden={getLenChk()}>
                             Minimum 10 characters long
@@ -76,7 +76,7 @@ export const Register: Component = () => {
                     {getMsg()}
                 </div>
                 <div class="reg-submit">
-                    <button class="btn-reg" onClick={() => handleRegister()} disabled={btnDis()}>Register</button>
+                    <button class="btn-reg" onClick={() => handleRegister()} disabled={(getUname() == "") || pswdChk() }>Register</button>
                 </div>
                 <div class="reg-help">
                     For instructions checkout <a href="./help">Instructions Page</a>.
