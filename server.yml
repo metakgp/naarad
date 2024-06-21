@@ -11,7 +11,7 @@
 # - iOS push notifications for self-hosted servers (to calculate the Firebase poll_request topic)
 # - Matrix Push Gateway (to validate that the pushkey is correct)
 #
-base-url: https://naarad.metakgp.org
+base-url: http://localhost:8000
 
 # Listen address for the HTTP & HTTPS web server. If "listen-https" is set, you must also
 # set "key-file" and "cert-file". Format: [<ip>]:<port>, e.g. "1.2.3.4:8080".
@@ -217,8 +217,8 @@ web-root: "/web"
 # - enable-login allows users to log in via the web app, or API
 # - enable-reservations allows users to reserve topics (if their tier allows it)
 #
-# enable-signup: false
-# enable-login: false
+enable-signup: true
+enable-login: true
 # enable-reservations: false
 
 # Server URL of a Firebase/APNS-connected ntfy server (likely "https://ntfy.sh").
