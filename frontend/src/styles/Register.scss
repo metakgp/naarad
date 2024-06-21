@@ -19,8 +19,11 @@ $medium: 900px;
         border: solid #000;
         background-color: #1e1e2f;
         .reg-title{
-            height: 20%;
-            
+            height: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             .reg-title-name{
                 font-size: 4rem;
                 font-weight: 900;
@@ -33,7 +36,7 @@ $medium: 900px;
             }
         }
         .reg-input{
-            height: 40%;
+            height: 35%;
             display: flex;
             justify-content: space-evenly;
             flex-direction: column;
@@ -69,6 +72,22 @@ $medium: 900px;
             }
         }
 
+        .pswd-chk{
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction: column;
+            .pswd-chk-title{
+                font-size: larger;
+                font-weight: 900;
+            }
+
+            ul{
+                width: 30%;
+                padding-left: 35%;
+            }
+        }
         .reg-submit{
             height: 10%;
             display: flex;
@@ -95,6 +114,7 @@ $medium: 900px;
         }
 
         .reg-help{
+            height: 5%;
             color: hsl(215, 20.2%, 65.1%);
             a{
                 color: #fefefe;
