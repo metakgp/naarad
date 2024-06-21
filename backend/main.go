@@ -17,6 +17,7 @@ import (
 var (
 	db             *sql.DB
 	ntfyServerAddr string
+	userId         string
 )
 
 var reqBody struct {
@@ -28,7 +29,74 @@ var resStruct struct {
 	Msg string `json:"msg"`
 }
 
+var jwtValidateResp struct {
+	Email string `json:"email"`
+}
+
+func getUsername(res http.ResponseWriter, req *http.Request) {
+	cookie, err := req.Cookie("heimdall")
+	if err != nil {
+		http.Error(res, "No JWT session token found.", http.StatusUnauthorized)
+		return
+	}
+	tokenString := cookie.Value
+
+	// Get email from jwt token
+	req, _ = http.NewRequest("GET", "http://heimdall.metakgp.org/validate-jwt", nil)
+	req.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err.Error(), "1")
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
+		fmt.Println(err.Error(), "2")
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(res).Encode(&jwtValidateResp)
+	if err != nil {
+		fmt.Println(err.Error(), "3")
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+}
+
 func register(res http.ResponseWriter, req *http.Request) {
+	cookie, err := req.Cookie("heimdall")
+	if err != nil {
+		http.Error(res, "No JWT session token found.", http.StatusUnauthorized)
+		return
+	}
+	tokenString := cookie.Value
+
+	// Get email from jwt token from heimdall
+	req, _ = http.NewRequest("POST", "http://heimdall.metakgp.org/validate-jwt", nil)
+	req.Header.Set("Cookies", fmt.Sprintf("heimdall=%s", tokenString))
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Decoding the heimdall body
+	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
+		fmt.Println(err.Error(), "2")
+		http.Error(res, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Getting Body
 	if err := json.NewDecoder(req.Body).Decode(&reqBody); err != nil {
 		http.Error(res, err.Error(), http.StatusBadRequest)
 		return
@@ -38,19 +106,16 @@ func register(res http.ResponseWriter, req *http.Request) {
 		http.Error(res, "Username cannot be empty", http.StatusBadRequest)
 		return
 	}
-
-	if !strings.HasSuffix(reqBody.Uname, "@kgpian.iitkgp.ac.in") {
-		http.Error(res, "Invalid email domain. Must be @kgpian.iitkgp.ac.in", http.StatusBadRequest)
+	// Check if request body username and the cookie email are same
+	if reqBody.Uname+"@kgpian.iitkgp.ac.in" != jwtValidateResp.Email {
+		http.Error(res, "Username and Token Mismatch", http.StatusUnauthorized)
 		return
 	}
-
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, reqBody.Uname, reqBody.PassKey)
 	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
 
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+	resp, err = client.Do(req)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
@@ -62,10 +127,6 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	// Get the userid from sqlite db
-	var (
-		userId string
-	)
-
 	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, reqBody.Uname)
 
 	if err = rowD.Scan(&userId); err != nil {
@@ -115,12 +176,13 @@ func main() {
 	}
 
 	http.HandleFunc("POST /register", register)
+	http.HandleFunc("GET /uname", getUsername)
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"https://naarad.metakgp.org", "http://localhost:3000"},
 	})
-	fmt.Println("Naarad Backend Server running on port : 3333")
-	err = http.ListenAndServe(":3333", c.Handler(http.DefaultServeMux))
+	fmt.Println("Naarad Backend Server running on port : 5173")
+	err = http.ListenAndServe(":5173", c.Handler(http.DefaultServeMux))
 
 	if err != nil {
 		fmt.Printf("error starting server: %s\n", err)
