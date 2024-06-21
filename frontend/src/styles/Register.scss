@@ -94,6 +94,13 @@ $medium: 900px;
             }
         }
 
+        .reg-help{
+            color: hsl(215, 20.2%, 65.1%);
+            a{
+                color: #fefefe;
+            }
+        }
+
         @media screen and (max-width: $medium){
             height: 70%;
             width: 80%;

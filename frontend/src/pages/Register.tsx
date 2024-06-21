@@ -38,6 +38,9 @@ export const Register: Component = () => {
                 <div class="reg-submit">
                     <button class="btn-reg" onClick={() => handleRegister()}>Register</button>
                 </div>
+                <div class="reg-help">
+                    For instructions checkout <a href="./help">Instructions Page</a>.
+                </div>
             </div>
         </div>
     )
