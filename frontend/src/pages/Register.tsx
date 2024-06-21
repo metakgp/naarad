@@ -1,4 +1,4 @@
-import { Component, createSignal } from "solid-js";
+import { Component, createSignal, onMount } from "solid-js";
 import "../styles/Register.scss"
 
 export const Register: Component = () => {
@@ -13,6 +13,18 @@ export const Register: Component = () => {
 
     const [pswdChk, setPswdChk] = createSignal(true)
     
+    onMount(async () => {
+        fetch(import.meta.env.VITE_BACKEND_URL+'/uname', {
+            method:"GET",
+            credentials: 'include'
+        }).then((data) => {
+            if(data.ok){
+                data.json().then((dataJson) => {
+                    setUname(dataJson.email)
+                })
+            }
+        })
+    })
 
     const pswdChange = (pswd: string) => {
         
@@ -32,6 +44,7 @@ export const Register: Component = () => {
         fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
             method: "POST",
             body: JSON.stringify({"uname":getUname(), "pswd": getPswd()}),
+            credentials: 'include'
         }).then((data) => {
             if(!data.ok){
                 data.text().then((res) => {setMsg(res)})
