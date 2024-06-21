@@ -1,5 +1,5 @@
 import { Component, createSignal } from "solid-js";
-import "../styles/styles.scss"
+import "../styles/Register.scss"
 
 export const Register: Component = () => {
     const [getUname, setUname] = createSignal("");
