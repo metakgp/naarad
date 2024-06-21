@@ -4,7 +4,7 @@ import "../styles/Register.scss"
 export const Register: Component = () => {
     const [getUname, setUname] = createSignal("");
     const [getPswd, setPswd] = createSignal("");
-    const [getMsg, setMsg] = createSignal("Error in register");
+    const [getMsg, setMsg] = createSignal("");
     const handleRegister = () => {
         fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
             method: "POST",
