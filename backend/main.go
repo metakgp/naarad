@@ -11,6 +11,7 @@ import (
 
 	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/rs/cors"
 )
 
 var (
@@ -105,8 +106,12 @@ func main() {
 	}
 
 	http.HandleFunc("POST /register", register)
+
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"https://naarad.metakgp.org", "http://localhost:3000"},
+	})
 	fmt.Println("Naarad Backend Server running on port : 3333")
-	err = http.ListenAndServe(":3333", nil)
+	err = http.ListenAndServe(":3333", c.Handler(http.DefaultServeMux))
 
 	if err != nil {
 		fmt.Printf("error starting server: %s\n", err)
