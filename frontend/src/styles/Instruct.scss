@@ -1,0 +1,58 @@
+$small: 300px;
+$medium: 900px;
+
+.ins{
+    width: 100vw;
+    height: 100vh;
+    background-color: #1e1e2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    .ins-main{
+        height: 60%;
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 1em;
+        border: solid #000;
+        background-color: #1e1e2f;
+        .ins-title{
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .ins-title-name{
+                font-size: 4rem;
+                font-weight: 900;
+                padding-bottom: 5%;
+            }
+        }
+        .ins-info{
+            height: 80%;
+            .ins-info-title{
+                padding-top: 5%;
+                font-size: xx-large;
+                text-decoration: underline;
+            }
+
+            li{
+                font-size: large;
+                padding-bottom: 2%;
+                a{
+                    color: #fefefe;
+                }
+                @media screen and (max-width: $medium){
+                    font-size: small;
+                }
+            }
+        }
+
+        @media screen and (max-width: $medium){
+            height: 70%;
+            width: 85%;
+            padding-right: 5%;
+        }
+    }
+}
