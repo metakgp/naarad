@@ -6,24 +6,24 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
+	"strings"
 
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
-	"github.com/sethvargo/go-password/password"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var (
-	db *sql.DB
+	db             *sql.DB
+	ntfyServerAddr string
 )
 
 var reqBody struct {
-	Uname string `json:"uname"`
+	Uname   string `json:"uname"`
+	PassKey string `json:"pswd"`
 }
 
 var resStruct struct {
-	PassKey string `json:"pswd"`
-	Msg     string `json:"msg"`
+	Msg string `json:"msg"`
 }
 
 func register(res http.ResponseWriter, req *http.Request) {
@@ -32,26 +32,30 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	if reqBody.Uname == "" {
+	if reqBody.Uname == "" || reqBody.PassKey == "" {
 		http.Error(res, "Username cannot be empty", http.StatusBadRequest)
 		return
 	}
 
-	pswdGen, err := password.Generate(15, 5, 0, false, false)
+	signupData := fmt.Sprintf(`{"username": "%s", "pssword": "%s"}`, reqBody.Uname, reqBody.PassKey)
+	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
+	req.Header.Set("Accept", "application/json")
+
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	defer resp.Body.Close()
 
-	query := fmt.Sprintf("INSERT INTO users VALUES('%s', '%s')", reqBody.Uname, pswdGen)
-	_, err = db.Query(query)
-	if err != nil {
-		http.Error(res, err.Error(), http.StatusConflict)
+	if resp.StatusCode != 200 {
+		http.Error(res, "User creation Error", resp.StatusCode)
 		return
 	}
 
 	http.Header.Add(res.Header(), "content-type", "application/json")
-	resStruct.PassKey = pswdGen
 	resStruct.Msg = "User creation success"
 
 	err = json.NewEncoder(res).Encode(&resStruct)
@@ -63,20 +67,8 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	godotenv.Load()
-
-	user := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
-	host := os.Getenv("DB_HOST")
-	port, err := strconv.Atoi(os.Getenv("DB_PORT"))
-
-	if err != nil {
-		panic(err)
-	}
-
-	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-
-	db, err = sql.Open("postgres", psqlconn)
+	ntfyServerAddr = os.Getenv("NTFY_SERVER")
+	db, err := sql.Open("sqlite3", "./user.db")
 	if err != nil {
 		panic(err)
 	}
