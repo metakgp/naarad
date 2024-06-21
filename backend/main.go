@@ -39,6 +39,11 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	if !strings.HasSuffix(reqBody.Uname, "@kgpian.iitkgp.ac.in") {
+		http.Error(res, "Invalid email domain. Must be @kgpian.iitkgp.ac.in", http.StatusBadRequest)
+		return
+	}
+
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, reqBody.Uname, reqBody.PassKey)
 	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
