@@ -93,7 +93,11 @@ func main() {
 		log.Println(err)
 	}
 	ntfyServerAddr = os.Getenv("NTFY_SERVER")
-	db, err = sql.Open("sqlite3", "user.db")
+	fileLoc := os.Getenv("NTFY_AUTH_FILE")
+	if fileLoc == "" || ntfyServerAddr == "" {
+		panic("NTFY Server or NTFY auth file location cannot be empty")
+	}
+	db, err = sql.Open("sqlite3", fileLoc)
 	if err != nil {
 		panic(err)
 	}
