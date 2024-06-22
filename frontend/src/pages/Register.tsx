@@ -53,6 +53,9 @@ export const Register: Component = () => {
                 data.text().then((res) => {setMsg(res)})
             }else{
                 setMsg("Successfully Created User")
+                setTimeout(() => {
+                    document.location='./help'
+                }, 1000)
             }
         })
     }
