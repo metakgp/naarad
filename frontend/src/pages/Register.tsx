@@ -20,8 +20,11 @@ export const Register: Component = () => {
         }).then((data) => {
             if(data.ok){
                 data.json().then((dataJson) => {
-                    setUname(dataJson.email)
+                    var uname = dataJson.email.replace("@kgpian.iitkgp.ac.in", "")
+                    setUname(uname)
                 })
+            }else{
+                document.location = "https://heimdall.metakgp.org/"
             }
         })
     })
@@ -58,11 +61,11 @@ export const Register: Component = () => {
             <div class="reg-main">
                 <div class="reg-title">
                     <div class="reg-title-name">Naarad</div>
-                    <div class="reg-title-desc">Register with a unique username and strong password.</div>
+                    <div class="reg-title-desc">Register with username and strong password.</div>
                 </div>
                 <div class="reg-input">
                     <div class="reg-uname">
-                        <input type="text" onInput={(e) => setUname(e.target.value)} placeholder="Enter a unique username"/>
+                        <input type="text" placeholder="Enter a unique username" value={getUname()} disabled/>
                     </div>
                     <div class="reg-pswd">
                         <input type="password" onInput={(e) => pswdChange(e.target.value)} placeholder="Enter a secure password"/>
