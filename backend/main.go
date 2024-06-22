@@ -42,27 +42,24 @@ func getUsername(res http.ResponseWriter, req *http.Request) {
 	tokenString := cookie.Value
 
 	// Get email from jwt token
-	req, _ = http.NewRequest("GET", "http://heimdall.metakgp.org/validate-jwt", nil)
-	req.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
+	reqEmail, _ := http.NewRequest("GET", "https://heimdall-api.metakgp.org/validate-jwt", nil)
+	reqEmail.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
 	client := &http.Client{}
 
-	resp, err := client.Do(req)
+	resp, err := client.Do(reqEmail)
 	if err != nil {
-		fmt.Println(err.Error(), "1")
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
 	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
-		fmt.Println(err.Error(), "2")
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	err = json.NewEncoder(res).Encode(&jwtValidateResp)
 	if err != nil {
-		fmt.Println(err.Error(), "3")
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -77,21 +74,19 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 	tokenString := cookie.Value
 
-	// Get email from jwt token from heimdall
-	req, _ = http.NewRequest("POST", "http://heimdall.metakgp.org/validate-jwt", nil)
-	req.Header.Set("Cookies", fmt.Sprintf("heimdall=%s", tokenString))
+	// Get email from jwt token
+	reqEmail, _ := http.NewRequest("GET", "https://heimdall-api.metakgp.org/validate-jwt", nil)
+	reqEmail.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
 	client := &http.Client{}
 
-	resp, err := client.Do(req)
+	resp, err := client.Do(reqEmail)
 	if err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
-	// Decoding the heimdall body
 	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
-		fmt.Println(err.Error(), "2")
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -179,7 +174,8 @@ func main() {
 	http.HandleFunc("GET /uname", getUsername)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"https://naarad.metakgp.org", "http://localhost:3000"},
+		AllowedOrigins:   []string{"https://naarad.metakgp.org", "http://localhost:3000"},
+		AllowCredentials: true,
 	})
 	fmt.Println("Naarad Backend Server running on port : 5173")
 	err = http.ListenAndServe(":5173", c.Handler(http.DefaultServeMux))
