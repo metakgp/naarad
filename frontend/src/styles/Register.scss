@@ -10,8 +10,8 @@ $medium: 900px;
     align-items: center;
     color: white;
     .reg-main{
-        height: 60%;
-        width: 30%;
+        height: 40rem;
+        width: 35rem;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -46,14 +46,14 @@ $medium: 900px;
                 border: none;
                 background-color: #1e1e2c;
                 height: 100%;
-                width: 50%;
+                width: 60%;
                 border: solid #fff 1px;
                 border-radius: 1rem;
                 color: #fff;
                 font-size: 80%;
                 padding: 1% 4% 1% 4%;
                 @media screen and (max-width: $medium){
-                    padding: 5% 5% 5% 5%;
+                    padding: 2% 5% 2% 5%;
                     width: 80%;
                     font-size: 60%;
                 }
@@ -84,8 +84,13 @@ $medium: 900px;
             }
 
             ul{
-                width: 30%;
-                padding-left: 35%;
+                padding: 0%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                flex-direction: column;
+                
             }
         }
         .reg-submit{
@@ -122,6 +127,7 @@ $medium: 900px;
         }
 
         @media screen and (max-width: $medium){
+            padding: 5%;
             height: 70%;
             width: 80%;
         }
