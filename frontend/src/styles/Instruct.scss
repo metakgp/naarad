@@ -10,8 +10,9 @@ $medium: 900px;
     align-items: center;
     color: white;
     .ins-main{
-        height: 60%;
-        width: 30%;
+        padding: 2%;
+        height: 40rem;
+        width: 35rem;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -19,7 +20,7 @@ $medium: 900px;
         border: solid #000;
         background-color: #1e1e2f;
         .ins-title{
-            height: 20%;
+            height: 10%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,21 +31,25 @@ $medium: 900px;
             }
         }
         .ins-info{
-            height: 80%;
+            height: 70%;
             .ins-info-title{
                 padding-top: 5%;
-                font-size: xx-large;
-                text-decoration: underline;
+                font-size: 135%;
+                font-weight: 700;
             }
-
+            ol{
+                width: 100%;
+                padding-left: 2%;
+            }
             li{
-                font-size: large;
+                
+                font-size: 90%;
                 padding-bottom: 2%;
                 a{
                     color: #fefefe;
                 }
                 @media screen and (max-width: $medium){
-                    font-size: small;
+                    font-size: 75%;
                 }
             }
         }
@@ -52,7 +57,7 @@ $medium: 900px;
         @media screen and (max-width: $medium){
             height: 70%;
             width: 85%;
-            padding-right: 5%;
+            padding: 5%;
         }
     }
 }
