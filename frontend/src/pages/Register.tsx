@@ -71,7 +71,7 @@ export const Register: Component = () => {
                         <input type="text" placeholder="Enter a unique username" value={getUname()} disabled/>
                     </div>
                     <div class="reg-pswd">
-                        <input type="password" onInput={(e) => pswdChange(e.target.value)} placeholder="Enter a secure password"/>
+                        <input type="password" onInput={(e) => pswdChange(e.target.value)} placeholder="Enter a password"/>
                     </div>
                 </div>
                 <div class="pswd-chk">
