@@ -1,5 +1,4 @@
-$small: 300px;
-$medium: 900px;
+$medium: 1024px;
 
 .ins{
     width: 100vw;
@@ -11,8 +10,8 @@ $medium: 900px;
     color: white;
     .ins-main{
         padding: 2%;
-        height: 40rem;
-        width: 35rem;
+        height: 60%;
+        width: 25%;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -25,7 +24,7 @@ $medium: 900px;
             justify-content: center;
             align-items: center;
             .ins-title-name{
-                font-size: 4rem;
+                font-size: 6vh;
                 font-weight: 900;
                 padding-bottom: 5%;
             }
@@ -34,7 +33,7 @@ $medium: 900px;
             height: 80%;
             .ins-info-title{
                 padding-top: 5%;
-                font-size: 135%;
+                font-size: 2.5vh;
                 font-weight: 700;
             }
             ol{
@@ -43,13 +42,13 @@ $medium: 900px;
             }
             li{
                 
-                font-size: 90%;
+                font-size: 1.5vh;
                 padding-bottom: 2%;
                 a{
                     color: #fefefe;
                 }
                 @media screen and (max-width: $medium){
-                    font-size: 90%;
+                    font-size: 1.5vh;
                 }
             }
         }
