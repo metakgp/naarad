@@ -1,5 +1,4 @@
-$small: 300px;
-$medium: 900px;
+$medium: 1024px;
 
 .reg{
     width: 100vw;
@@ -10,6 +9,7 @@ $medium: 900px;
     align-items: center;
     color: white;
     .reg-main{
+        padding: 2%;
         height: 60%;
         width: 25%;
         display: flex;
@@ -90,7 +90,7 @@ $medium: 900px;
                 align-items: center;
                 width: 100%;
                 flex-direction: column;
-                font-size: 1vw;
+                font-size: 1.5vh;
             }
         }
         .reg-submit{
@@ -103,7 +103,7 @@ $medium: 900px;
                 height: 60%;
                 width: 40%;
                 border-radius: 1vh;
-                font-size: 150%;
+                font-size: 2.5vh;
                 font-weight: 700;
                 cursor: pointer;
                 background-color: #fefefe;
