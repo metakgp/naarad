@@ -1,5 +1,6 @@
 import { Component, createSignal } from "solid-js";
 import "../styles/Instruct.scss"
+import { Navigate } from "@solidjs/router";
 
 export const Instruct: Component = () => {
     return (
@@ -24,6 +25,10 @@ export const Instruct: Component = () => {
                         <li>Enter name of the topic as naarad-cdc and service url as `https://naarad.metakgp.org/` and click on subscribe.</li>
                         <li>Enter the credentials used during registration and click on login.</li>
                     </ol>
+                </div>
+                <div class="ins-redrt">
+                    Go back to
+                    <a href="/" > Registration Page</a>
                 </div>
             </div>
         </div>

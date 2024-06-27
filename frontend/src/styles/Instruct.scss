@@ -31,7 +31,7 @@ $medium: 900px;
             }
         }
         .ins-info{
-            height: 70%;
+            height: 80%;
             .ins-info-title{
                 padding-top: 5%;
                 font-size: 135%;
@@ -49,8 +49,21 @@ $medium: 900px;
                     color: #fefefe;
                 }
                 @media screen and (max-width: $medium){
-                    font-size: 75%;
+                    font-size: 90%;
                 }
+            }
+        }
+
+        .ins-redrt{
+            height: 10%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5em;
+            color: hsl(215, 20.2%, 65.1%);
+            a{
+                color: white;
             }
         }
 
