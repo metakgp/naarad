@@ -108,7 +108,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	emailSubj := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
+	emailBody := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
 	sent, err := sendMail(userEmail, "Naarad Login Details | Metakgp", emailBody)
 
 	if err != nil || !sent {
