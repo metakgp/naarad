@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"strings"
@@ -20,12 +21,32 @@ var (
 	userId         string
 )
 
+const (
+	letterBytes  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	specialBytes = "!@#$%^&*()_+-=[]{}\\|;':\",.<>/?`~"
+	numBytes     = "0123456789"
+)
+
 var resStruct struct {
 	Msg string `json:"msg"`
 }
 
 var jwtValidateResp struct {
 	Email string `json:"email"`
+}
+
+func generatePassword(length int, useLetters bool, useSpecial bool, useNum bool) string {
+	b := make([]byte, length)
+	for i := range b {
+		if useLetters {
+			b[i] = letterBytes[rand.Intn(len(letterBytes))]
+		} else if useSpecial {
+			b[i] = specialBytes[rand.Intn(len(specialBytes))]
+		} else if useNum {
+			b[i] = numBytes[rand.Intn(len(numBytes))]
+		}
+	}
+	return string(b)
 }
 
 func getUsername(res http.ResponseWriter, req *http.Request) {
@@ -87,9 +108,11 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	uname := strings.TrimSuffix(jwtValidateResp.Email, "@kgpian.iitkgp.ac.in")
+	userEmail := jwtValidateResp.Email
+	pswd := generatePassword(14, true, true, true)
 
 	// Create user using ntfy api
-	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, uname, "")
+	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, uname, pswd)
 	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
 
 	resp, err = client.Do(req)
@@ -101,6 +124,13 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	if resp.StatusCode != 200 {
 		http.Error(res, "User creation Error", resp.StatusCode)
+		return
+	}
+
+	emailSubj := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
+	sent, err := sendMail(userEmail, "MetaKGP Naarad Login Details", emailSubj)
+	if err != nil || !sent {
+		http.Error(res, "Error sending confidentails", http.StatusInternalServerError)
 		return
 	}
 	// Get the userid from sqlite db
@@ -132,6 +162,9 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	err := godotenv.Load()
+
+	initMailer()
+
 	if err != nil {
 		log.Println(err)
 	}
