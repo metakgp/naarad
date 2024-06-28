@@ -24,7 +24,10 @@ export const Register: Component = () => {
                     setUname(uname)
                 })
             }else{
-                document.location = "https://heimdall.metakgp.org/"
+                setMsg("Unauthorised. Redirecting to heimdall...")
+                setTimeout(() => {
+                    document.location = "https://heimdall.metakgp.org/"
+                }, 1000)
             }
         })
     })
