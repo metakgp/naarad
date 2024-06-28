@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
@@ -22,9 +23,10 @@ var (
 )
 
 const (
-	letterBytes  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	specialBytes = "!@#$%^&*()_+-=[]{}\\|;':\",.<>/?`~"
-	numBytes     = "0123456789"
+	lowerCase   = "abcdefghijklmnopqrstuvwxyz"
+	upperCase   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	numbers     = "0123456789"
+	specialChar = "!@#$%^&*()_-+={}[/?]"
 )
 
 var resStruct struct {
@@ -35,18 +37,31 @@ var jwtValidateResp struct {
 	Email string `json:"email"`
 }
 
-func generatePassword(length int, useLetters bool, useSpecial bool, useNum bool) string {
-	b := make([]byte, length)
-	for i := range b {
-		if useLetters {
-			b[i] = letterBytes[rand.Intn(len(letterBytes))]
-		} else if useSpecial {
-			b[i] = specialBytes[rand.Intn(len(specialBytes))]
-		} else if useNum {
-			b[i] = numBytes[rand.Intn(len(numBytes))]
+func PasswordGenerator(passwordLength int) string {
+
+	password := ""
+	source := rand.NewSource(time.Now().UnixNano())
+	rng := rand.New(source)
+	for n := 0; n < passwordLength; n++ {
+		randNum := rng.Intn(4)
+
+		switch randNum {
+		case 0:
+			randCharNum := rng.Intn(len(lowerCase))
+			password += string(lowerCase[randCharNum])
+		case 1:
+			randCharNum := rng.Intn(len(upperCase))
+			password += string(upperCase[randCharNum])
+		case 2:
+			randCharNum := rng.Intn(len(numbers))
+			password += string(numbers[randCharNum])
+		case 3:
+			randCharNum := rng.Intn(len(specialChar))
+			password += string(specialChar[randCharNum])
 		}
 	}
-	return string(b)
+
+	return password
 }
 
 func register(res http.ResponseWriter, req *http.Request) {
@@ -76,7 +91,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	uname := strings.TrimSuffix(jwtValidateResp.Email, "@kgpian.iitkgp.ac.in")
 	userEmail := jwtValidateResp.Email
-	pswd := generatePassword(14, true, true, true)
+	pswd := PasswordGenerator(18)
 
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, uname, pswd)
