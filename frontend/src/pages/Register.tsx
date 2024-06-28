@@ -13,19 +13,19 @@ export const Register: Component = () => {
     
     
     onMount(() => {
-        fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
+        fetch(import.meta.env.BACKEND_URL+'/register', {
             method:"GET",
             credentials: 'include'
         }).then((data) => {
             setIsLoad(false);
             if(data.ok){
                 setMsg("Successfully Created User")
-                setStatus("User Registration success!")
+                setStatus("User Registration Success!")
             }
             else if(data.status === 409){
                 setIsDup(true);
-                setMsg("Password and Username are present in the official IITKGP email")
-                setStatus("User Registration Error!")
+                setMsg("User already present. Check your institute mail for credentials.")
+                setStatus("User Already Registered!")
             }
             else if(data.status == 401){
                 document.location = "https://heimdall.metakgp.org/"
