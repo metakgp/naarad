@@ -5,7 +5,7 @@ import check from "../assets/check.png"
 import cross from "../assets/cross.png"
 
 export const Register: Component = () => {
-    const [getUname, setUname] = createSignal("");
+    const [getStatus, setStatus] = createSignal("Registering user...");
     const [getMsg, setMsg] = createSignal("");
     const [getIsLoad, setIsLoad] = createSignal(true)
     const [getIsErr, setIsErr] = createSignal(false)
@@ -18,13 +18,18 @@ export const Register: Component = () => {
             credentials: 'include'
         }).then((data) => {
             setIsLoad(false);
-            if(data.ok) setMsg("Successfully Created User")
+            if(data.ok){
+                setMsg("Successfully Created User")
+                setStatus("User Registration success!")
+            }
             else if(data.status === 409){
                 setIsDup(true);
                 setMsg("Username and password is present in IITKGP Email")
+                setStatus("User Registration Error!")
             }
             else {
                 setIsErr(true)
+                setStatus("User Registration Error!")
                 data.text().then((bodyData) => {
                     setMsg(bodyData)
                 })
@@ -44,7 +49,7 @@ export const Register: Component = () => {
                     </div>
                 </div>
                 <div class="reg-status">
-                    <div class="reg-status-uname">Registering user: {getUname()}</div>
+                    <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-svg">
                         {getIsLoad() == true ? <Spinner /> : (getIsDup() == true ? <img src={cross} /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />))}
                     </div>
