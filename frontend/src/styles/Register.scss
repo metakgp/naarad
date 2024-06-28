@@ -20,13 +20,13 @@ $medium: 1024px;
         background-color: #1e1e2f;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         .reg-title{
-            height: 25%;
+            height: 35%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             .reg-title-name{
-                font-size: 6vh;
+                font-size: 5vh;
                 font-weight: 900;
                 padding-bottom: 5%;
             }
@@ -36,116 +36,44 @@ $medium: 1024px;
                 color: hsl(215, 20.2%, 65.1%);
             }
         }
-        .reg-input{
-            height: 30%;
-            display: flex;
-            justify-content: space-evenly;
-            flex-direction: column;
-            align-items: stretch;
-            font-size: 170%;
-            input{
-                border: none;
-                background-color: #1e1e2c;
-                height: 75%;
-                width: 60%;
-                border: solid #fff 1px;
-                border-radius: 1rem;
-                color: #fff;
-                font-size: 70%;
-                padding: 1% 4% 1% 4%;
-                @media screen and (max-width: $medium){
-                    padding: 2% 5% 2% 5%;
-                    width: 80%;
-                    font-size: 60%;
-                }
+
+        .reg-status{
+            height: 65%;
+            margin: 5% 10% 5% 10%;
+
+            .reg-status-uname{
+                height: 10%;
             }
 
-            .reg-uname, .reg-pswd{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                gap: 2%;
-                @media screen and (max-width: $medium){
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-        }
-
-        .pswd-chk{
-            height: 17%;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            flex-direction: column;
-            margin: 5%;
-            .pswd-chk-title{
-                height: 5%;
-                font-size: 2vh;
-                font-weight: 900;
-            }
-
-            ul{
+            .reg-status-svg{
                 height: 70%;
-                padding: 0%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100%;
-                flex-direction: column;
-                font-size: 1.5vh;
-                li {
-                    height: 25%;
-                    display: inline;
-                    width: 100%;
-                    .li-ele{
-                        width: 100%;
-                        display: flex;
-                        gap: 2%;
-                        justify-content: center;
-                        align-items: center;
-                        margin-top: 0.5vh;
-                    }
+                img{
+                    max-height: 95%;
+                    max-width: 95%;
+                    display: block;
+                    height: auto;
+                    width: auto;
                 }
             }
-        }
-        .reg-submit{
-            height: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .btn-reg{
-                border: none;
-                height: 60%;
-                width: 40%;
-                border-radius: 1vh;
-                font-size: 2.5vh;
-                font-weight: 700;
-                cursor: pointer;
-                background-color: #fefefe;
 
-                &:hover{
-                    background-color: #fff;
-                }
-
-                @media screen and (max-width: $medium){
-                    width: 80%;
-                }
+            .reg-status-text{
+                height: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: end;
             }
         }
 
-        .reg-help{
-            height: 10%;
-            color: hsl(215, 20.2%, 65.1%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5em;
+        .reg-footer{
+            height: 5%;
             a{
-                color: #fefefe;
+                color: #fff;
             }
         }
+        
 
         @media screen and (max-width: $medium){
             padding: 5%;

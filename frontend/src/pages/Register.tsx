@@ -1,119 +1,57 @@
 import { Component, createSignal, onMount } from "solid-js";
 import "../styles/Register.scss"
+import { Spinner } from "../components/Spinner";
+import check from "../assets/check.png"
+import cross from "../assets/cross.png"
 
 export const Register: Component = () => {
     const [getUname, setUname] = createSignal("");
-    const [getPswd, setPswd] = createSignal("");
     const [getMsg, setMsg] = createSignal("");
-
-    const [getLenChk, setLenChk] = createSignal(false)
-    const [getLwrChk, setLwrChk] = createSignal(false)
-    const [getUprChk, setUprChk] = createSignal(false)
-    const [getNumChk, setNumChk] = createSignal(false)
-
-    const [pswdChk, setPswdChk] = createSignal(true)
+    const [getIsLoad, setIsLoad] = createSignal(true)
+    const [getIsErr, setIsErr] = createSignal(false)
+    const [getIsDup, setIsDup] = createSignal(false)
     
-    onMount(async () => {
-        fetch(import.meta.env.VITE_BACKEND_URL+'/uname', {
+    
+    onMount(() => {
+        fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
             method:"GET",
             credentials: 'include'
         }).then((data) => {
-            if(data.ok){
-                data.json().then((dataJson) => {
-                    var uname = dataJson.email.replace("@kgpian.iitkgp.ac.in", "")
-                    setUname(uname)
+            setIsLoad(false);
+            if(data.ok) setMsg("Successfully Created User")
+            else if(data.status === 409){
+                setIsDup(true);
+                setMsg("Username and password is present in IITKGP Email")
+            }
+            else {
+                setIsErr(true)
+                data.text().then((bodyData) => {
+                    setMsg(bodyData)
                 })
-            }else{
-                setMsg("Unauthorised. Redirecting to heimdall...")
-                setTimeout(() => {
-                    document.location = "https://heimdall.metakgp.org/"
-                }, 1000)
             }
         })
     })
 
-    const pswdChange = (pswd: string) => {
-        
-        setLenChk(pswd.length >= 10)
-        setLwrChk(/[a-z]/.test(pswd))
-        setUprChk(/[A-Z]/.test(pswd))
-        setNumChk(/[0-9]/.test(pswd))
-        setPswd(pswd);
-        if (getLenChk() && getLwrChk() && getUprChk() && getNumChk()){
-            setPswdChk(false)
-        }else{
-            setPswdChk(true)
-        }
-    }
-
-    const handleRegister = () => {
-        fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
-            method: "POST",
-            body: JSON.stringify({"uname":getUname(), "pswd": getPswd()}),
-            credentials: 'include'
-        }).then((data) => {
-            if(!data.ok){
-                data.text().then((res) => {setMsg(res)})
-            }else{
-                setMsg("Successfully Created User")
-                setTimeout(() => {
-                    document.location='./help'
-                }, 1000)
-            }
-        })
-    }
     return (
         <div class="reg">
             <div class="reg-main">
                 <div class="reg-title">
-                    <div class="reg-title-name">Naarad</div>
-                    <div class="reg-title-desc">Register with username and strong password.</div>
-                </div>
-                <div class="reg-input">
-                    <div class="reg-uname">
-                        <input type="text" placeholder="Enter a username" value={getUname()} disabled/>
+                    <div class="reg-title-name">
+                        MetaKGP Naarad
                     </div>
-                    <div class="reg-pswd">
-                        <input type="password" onInput={(e) => pswdChange(e.target.value)} placeholder="Enter a password"/>
+                    <div class="reg-title-desc">
+                        Naarad Registration for accessing notifications
                     </div>
                 </div>
-                <div class="pswd-chk">
-                    <div class="pswd-chk-title">Password Must Contain: </div>
-                    <ul>
-                        <li>
-                            <div class="li-ele">
-                                {getLenChk() ? <p>&#10004;</p> : <p>&#10006</p>}
-                                Minimum 10 characters long
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-ele">
-                                {getLwrChk() ? <p>&#10004;</p> : <p>&#10006</p>}
-                                At least 1 lowercase letter
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-ele">
-                                {getUprChk() ? <p>&#10004;</p> : <p>&#10006</p>}
-                                At least 1 uppercase letter
-                            </div>
-                        </li>
-                        <li>
-                            <div class="li-ele">
-                                {getNumChk() ? <p>&#10004;</p> : <p>&#10006</p>}
-                                At least 1 number
-                            </div>
-                        </li>
-                    </ul>
+                <div class="reg-status">
+                    <div class="reg-status-uname">Registering user: {getUname()}</div>
+                    <div class="reg-status-svg">
+                        {getIsLoad() == true ? <Spinner /> : (getIsDup() == true ? <img src={cross} /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />))}
+                    </div>
+                    <div class="reg-status-text">{getMsg()}</div>
                 </div>
-                <div class="reg-msg">
-                    {getMsg()}
-                </div>
-                <div class="reg-submit">
-                    <button class="btn-reg" onClick={() => handleRegister()} disabled={(getUname() == "") || pswdChk() }>Register</button>
-                </div>
-                <div class="reg-help">
-                    For instructions checkout <a href="./help">Instructions Page</a>.
+                <div class="reg-footer">
+                    <h3 class="reg-footer">Made with ❤️ and {"</>"} by <a href="https://github.com/metakgp/naarad" target="_blank">MetaKGP</a></h3>
                 </div>
             </div>
         </div>
