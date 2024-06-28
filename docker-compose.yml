@@ -29,12 +29,15 @@ services:
     environment:
       - NTFY_SERVER=http://naarad:8000
       - NTFY_AUTH_FILE=/src/user.db
+      - PSWD_SIZE=18
     networks:
       metaploy-network:
         aliases:
           - naarad-backend
     volumes:
       - naarad-auth:/src/
+      - ./credentials.json:/credentials.json
+      - ./token.json:/token.json
     restart: unless-stopped
 
 networks:
