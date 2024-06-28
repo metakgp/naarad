@@ -38,7 +38,6 @@ var jwtValidateResp struct {
 }
 
 func PasswordGenerator(passwordLength int) string {
-
 	password := ""
 	source := rand.NewSource(time.Now().UnixNano())
 	rng := rand.New(source)
