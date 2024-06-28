@@ -129,6 +129,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	emailSubj := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
 	sent, err := sendMail(userEmail, "MetaKGP Naarad Login Details", emailSubj)
+
 	if err != nil || !sent {
 		http.Error(res, "Error sending confidentails", http.StatusInternalServerError)
 		return
@@ -141,7 +142,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	queryGenAccess := fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "%%", 1, 0, "")`, userId)
+	queryGenAccess := fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "kgp-%%", 1, 0, "")`, userId)
 	_, err = db.Exec(queryGenAccess)
 
 	if err != nil {
