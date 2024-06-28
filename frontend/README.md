@@ -4,10 +4,9 @@ This is the custom frontend for custom backend logic for registering users on na
 
 ## Building from source
 
-1) Install the dependenices:
-```bash
-$ ppm install # or pnpm install or yarn install
-```
+1) Install the dependencies:
+   ```bash
+   pnpm install
 
 2. Run with hot Reload: 
 
