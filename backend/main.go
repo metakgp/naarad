@@ -160,7 +160,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	defer db.Close()
 
 	err = db.Ping()
