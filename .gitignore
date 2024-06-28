@@ -3,3 +3,4 @@
 .env
 credentials.json
 token.json
+*.db
