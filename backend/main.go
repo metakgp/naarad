@@ -141,8 +141,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 	http.Header.Add(res.Header(), "content-type", "application/json")
 	resStruct.Msg = "User created successfully"
 
-	err = json.NewEncoder(res).Encode(&resStruct)
-	if err != nil {
+	if err = json.NewEncoder(res).Encode(&resStruct); err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		return
 	}
