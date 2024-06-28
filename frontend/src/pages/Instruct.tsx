@@ -28,7 +28,7 @@ export const Instruct: Component = () => {
                 </div>
                 <div class="ins-redrt">
                     Go back to
-                    <a href="/" > Registration Page</a>
+                    <a href="/" > Registration Page</a>.
                 </div>
             </div>
         </div>
