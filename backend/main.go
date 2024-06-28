@@ -159,25 +159,24 @@ func main() {
 	initMailer()
 
 	ntfyServerAddr = os.Getenv("NTFY_SERVER")
-	fileLoc := os.Getenv("NTFY_AUTH_FILE")
+	
 	pswdSize, err = strconv.Atoi(os.Getenv("PSWD_SIZE"))
 	if err != nil {
 		pswdSize = 18
 	}
-
+	
+	fileLoc := os.Getenv("NTFY_AUTH_FILE")
 	if fileLoc == "" || ntfyServerAddr == "" {
 		panic("NTFY Server or NTFY auth file location cannot be empty")
 	}
+	
 	db, err = sql.Open("sqlite3", fileLoc)
-
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
-	err = db.Ping()
-
-	if err != nil {
+	if err = db.Ping(); err != nil {
 		panic(err)
 	}
 
