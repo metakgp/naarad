@@ -1,6 +1,6 @@
 ## Usage
 
-This is the frontend of the naarad registration page.
+This is the custom frontend for custom backend logic for registering users on naarad, providing **read-only** access to `kgp-*` channels.
 
 ## Building from source
 
