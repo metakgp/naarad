@@ -110,7 +110,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	emailSubj := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
-	sent, err := sendMail(userEmail, "MetaKGP Naarad Login Details", emailSubj)
+	sent, err := sendMail(userEmail, "Naarad Login Details | Metakgp", emailBody)
 
 	if err != nil || !sent {
 		http.Error(res, "Error sending confidentails", http.StatusInternalServerError)
