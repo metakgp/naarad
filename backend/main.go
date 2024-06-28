@@ -187,8 +187,8 @@ func main() {
 		AllowCredentials: true,
 	})
 	fmt.Println("Naarad Backend Server running on port : 5173")
-	err = http.ListenAndServe(":5173", c.Handler(http.DefaultServeMux))
 
+	err = http.ListenAndServe(":5173", c.Handler(http.DefaultServeMux))
 	if err != nil {
 		fmt.Printf("error starting server: %s\n", err)
 		panic(err)
