@@ -186,7 +186,7 @@ func main() {
 		panic(err)
 	}
 
-	http.HandleFunc("POST /register", register)
+	http.HandleFunc("GET /register", register)
 	http.HandleFunc("GET /uname", getUsername)
 
 	c := cors.New(cors.Options{
