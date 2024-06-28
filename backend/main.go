@@ -49,39 +49,6 @@ func generatePassword(length int, useLetters bool, useSpecial bool, useNum bool)
 	return string(b)
 }
 
-func getUsername(res http.ResponseWriter, req *http.Request) {
-	cookie, err := req.Cookie("heimdall")
-	if err != nil {
-		http.Error(res, "No JWT session token found.", http.StatusUnauthorized)
-		return
-	}
-	tokenString := cookie.Value
-
-	// Get email from jwt token
-	reqEmail, _ := http.NewRequest("GET", "https://heimdall-api.metakgp.org/validate-jwt", nil)
-	reqEmail.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
-	client := &http.Client{}
-
-	resp, err := client.Do(reqEmail)
-	if err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer resp.Body.Close()
-
-	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	err = json.NewEncoder(res).Encode(&jwtValidateResp)
-	if err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-}
-
 func register(res http.ResponseWriter, req *http.Request) {
 	cookie, err := req.Cookie("heimdall")
 	if err != nil {
@@ -187,7 +154,6 @@ func main() {
 	}
 
 	http.HandleFunc("GET /register", register)
-	http.HandleFunc("GET /uname", getUsername)
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"https://naarad.metakgp.org", "http://localhost:3000"},
