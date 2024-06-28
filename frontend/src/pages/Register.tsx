@@ -24,7 +24,7 @@ export const Register: Component = () => {
             }
             else if(data.status === 409){
                 setIsDup(true);
-                setMsg("Username and password is present in IITKGP Email")
+                setMsg("Password and Username are present in the official IITKGP email")
                 setStatus("User Registration Error!")
             }
             else if(data.status == 401){
