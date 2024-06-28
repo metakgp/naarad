@@ -23,6 +23,20 @@ services:
         start_period: 40s
     restart: unless-stopped
 
+  naarad-backend:
+    build: backend
+    image: naarad-backend
+    environment:
+      - NTFY_SERVER=http://naarad:8000
+      - NTFY_AUTH_FILE=/src/user.db
+    networks:
+      metaploy-network:
+        aliases:
+          - naarad-backend
+    volumes:
+      - naarad-auth:/src/
+    restart: always
+
 networks:
   metaploy-network:
     external: true
