@@ -123,9 +123,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	queryGenAccess := fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "kgp-%%", 1, 0, "")`, userId)
-	_, err = db.Exec(queryGenAccess)
-
-	if err != nil {
+	if _, err = db.Exec(queryGenAccess); err != nil {
 		fmt.Println("Access generation error: ", err.Error())
 		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
 		return
