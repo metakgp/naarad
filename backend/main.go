@@ -145,12 +145,12 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	err := godotenv.Load()
-
-	initMailer()
-
 	if err != nil {
 		log.Println(err)
 	}
+	
+	initMailer()
+
 	ntfyServerAddr = os.Getenv("NTFY_SERVER")
 	fileLoc := os.Getenv("NTFY_AUTH_FILE")
 	if fileLoc == "" || ntfyServerAddr == "" {
