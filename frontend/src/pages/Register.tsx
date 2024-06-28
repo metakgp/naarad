@@ -27,6 +27,9 @@ export const Register: Component = () => {
                 setMsg("Username and password is present in IITKGP Email")
                 setStatus("User Registration Error!")
             }
+            else if(data.status == 401){
+                document.location = "https://heimdall.metakgp.org/"
+            }
             else {
                 setIsErr(true)
                 setStatus("User Registration Error!")
