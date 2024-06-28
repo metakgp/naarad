@@ -20,7 +20,7 @@ export const Register: Component = () => {
             setIsLoad(false);
             if(data.ok){
                 setMsg("Successfully Created User")
-                setStatus("User Registration Success!")
+                setStatus("User Registration Successful!")
             }
             else if(data.status === 409){
                 setIsDup(true);
