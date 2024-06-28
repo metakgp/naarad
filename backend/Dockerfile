@@ -6,6 +6,7 @@ RUN go mod download
 RUN CGO_ENABLED=1 GOOS=linux go build -o /app --tags "fts5" -a -ldflags '-linkmode external -extldflags "-static"' .
 
 FROM busybox:1.36-musl
-
+RUN mkdir -p /etc/ssl/certs
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /app /app
 CMD ["/app"]
