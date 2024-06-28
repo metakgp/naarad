@@ -68,26 +68,38 @@ export const Register: Component = () => {
                 </div>
                 <div class="reg-input">
                     <div class="reg-uname">
-                        <input type="text" placeholder="Enter a unique username" value={getUname()} disabled/>
+                        <input type="text" placeholder="Enter a username" value={getUname()} disabled/>
                     </div>
                     <div class="reg-pswd">
                         <input type="password" onInput={(e) => pswdChange(e.target.value)} placeholder="Enter a password"/>
                     </div>
                 </div>
                 <div class="pswd-chk">
-                    <div class="pswd-chk-title" hidden={!pswdChk()}>Password Must Contain: </div>
+                    <div class="pswd-chk-title">Password Must Contain: </div>
                     <ul>
-                        <li hidden={getLenChk()}>
-                            Minimum 10 characters long
+                        <li>
+                            <div class="li-ele">
+                                {getLenChk() ? <p>&#10004;</p> : <p>&#10006</p>}
+                                Minimum 10 characters long
+                            </div>
                         </li>
-                        <li hidden={getLwrChk()}>
-                            At least 1 lowercase letter
+                        <li>
+                            <div class="li-ele">
+                                {getLwrChk() ? <p>&#10004;</p> : <p>&#10006</p>}
+                                At least 1 lowercase letter
+                            </div>
                         </li>
-                        <li hidden={getUprChk()}>
-                            At least 1 uppercase letter
+                        <li>
+                            <div class="li-ele">
+                                {getUprChk() ? <p>&#10004;</p> : <p>&#10006</p>}
+                                At least 1 uppercase letter
+                            </div>
                         </li>
-                        <li hidden={getNumChk()}>
-                            At least 1 number
+                        <li>
+                            <div class="li-ele">
+                                {getNumChk() ? <p>&#10004;</p> : <p>&#10006</p>}
+                                At least 1 number
+                            </div>
                         </li>
                     </ul>
                 </div>
