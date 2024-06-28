@@ -134,7 +134,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	http.Header.Add(res.Header(), "content-type", "application/json")
-	resStruct.Msg = "User creation success"
+	resStruct.Msg = "User created successfully"
 
 	err = json.NewEncoder(res).Encode(&resStruct)
 	if err != nil {
