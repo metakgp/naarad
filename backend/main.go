@@ -20,11 +20,6 @@ var (
 	userId         string
 )
 
-var reqBody struct {
-	Uname   string `json:"uname"`
-	PassKey string `json:"pswd"`
-}
-
 var resStruct struct {
 	Msg string `json:"msg"`
 }
@@ -91,23 +86,10 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// Getting Body
-	if err := json.NewDecoder(req.Body).Decode(&reqBody); err != nil {
-		http.Error(res, err.Error(), http.StatusBadRequest)
-		return
-	}
+	uname := strings.TrimSuffix(jwtValidateResp.Email, "@kgpian.iitkgp.ac.in")
 
-	if reqBody.Uname == "" || reqBody.PassKey == "" {
-		http.Error(res, "Username cannot be empty", http.StatusBadRequest)
-		return
-	}
-	// Check if request body username and the cookie email are same
-	if reqBody.Uname+"@kgpian.iitkgp.ac.in" != jwtValidateResp.Email {
-		http.Error(res, "Username and Token Mismatch", http.StatusUnauthorized)
-		return
-	}
 	// Create user using ntfy api
-	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, reqBody.Uname, reqBody.PassKey)
+	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, uname, "")
 	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
 
 	resp, err = client.Do(req)
@@ -122,7 +104,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	// Get the userid from sqlite db
-	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, reqBody.Uname)
+	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, uname)
 
 	if err = rowD.Scan(&userId); err != nil {
 		http.Error(res, "Database error", http.StatusInternalServerError)
