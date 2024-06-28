@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -20,13 +21,14 @@ var (
 	db             *sql.DB
 	ntfyServerAddr string
 	userId         string
+	pswdSize       int
 )
 
 const (
 	lowerCase   = "abcdefghijklmnopqrstuvwxyz"
 	upperCase   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	numbers     = "0123456789"
-	specialChar = "!@#$%^&*()_-+={}[/?]"
+	specialChar = "!@#$%^&*()_-+{}[]"
 )
 
 var resStruct struct {
@@ -40,22 +42,22 @@ var jwtValidateResp struct {
 func PasswordGenerator(passwordLength int) string {
 	password := ""
 	source := rand.NewSource(time.Now().UnixNano())
-	rng := rand.New(source)
+	randGen := rand.New(source)
 	for n := 0; n < passwordLength; n++ {
-		randNum := rng.Intn(4)
+		randNum := randGen.Intn(4)
 
 		switch randNum {
 		case 0:
-			randCharNum := rng.Intn(len(lowerCase))
+			randCharNum := randGen.Intn(len(lowerCase))
 			password += string(lowerCase[randCharNum])
 		case 1:
-			randCharNum := rng.Intn(len(upperCase))
+			randCharNum := randGen.Intn(len(upperCase))
 			password += string(upperCase[randCharNum])
 		case 2:
-			randCharNum := rng.Intn(len(numbers))
+			randCharNum := randGen.Intn(len(numbers))
 			password += string(numbers[randCharNum])
 		case 3:
-			randCharNum := rng.Intn(len(specialChar))
+			randCharNum := randGen.Intn(len(specialChar))
 			password += string(specialChar[randCharNum])
 		}
 	}
@@ -78,19 +80,21 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	resp, err := client.Do(reqEmail)
 	if err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
+		fmt.Println("Heimdall API Error: ", err.Error())
+		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
 
 	if err := json.NewDecoder(resp.Body).Decode(&jwtValidateResp); err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
+		fmt.Println("Email Decoder Error: ", err.Error())
+		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
 	uname := strings.TrimSuffix(jwtValidateResp.Email, "@kgpian.iitkgp.ac.in")
 	userEmail := jwtValidateResp.Email
-	pswd := PasswordGenerator(18)
+	pswd := PasswordGenerator(pswdSize)
 
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, uname, pswd)
@@ -98,7 +102,8 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	resp, err = client.Do(req)
 	if err != nil {
-		http.Error(res, err.Error(), http.StatusInternalServerError)
+		fmt.Println("NTFY User API error: ", err.Error())
+		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
@@ -108,18 +113,12 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	emailBody := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
-	sent, err := sendMail(userEmail, "Naarad Login Details | Metakgp", emailBody)
-
-	if err != nil || !sent {
-		http.Error(res, "Error sending confidentails", http.StatusInternalServerError)
-		return
-	}
 	// Get the userid from sqlite db
 	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, uname)
 
 	if err = rowD.Scan(&userId); err != nil {
-		http.Error(res, "Database error", http.StatusInternalServerError)
+		fmt.Println("Database Error: ", err.Error())
+		http.Error(res, "Internal server error", http.StatusInternalServerError)
 		return
 	}
 
@@ -127,8 +126,17 @@ func register(res http.ResponseWriter, req *http.Request) {
 	_, err = db.Exec(queryGenAccess)
 
 	if err != nil {
-		fmt.Println(err.Error())
-		http.Error(res, "Access generation error", http.StatusInternalServerError)
+		fmt.Println("Access generation error: ", err.Error())
+		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	emailBody := fmt.Sprintf("Username for signing in to Naarad portal: %s\nPassword for signing in to Naarad Portal: %s", uname, pswd)
+	sent, err := sendMail(userEmail, "Naarad Login Details | Metakgp", emailBody)
+
+	if err != nil || !sent {
+		fmt.Println("Error sending confidentials: ", err.Error())
+		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
@@ -147,21 +155,28 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-	
+
 	initMailer()
 
 	ntfyServerAddr = os.Getenv("NTFY_SERVER")
 	fileLoc := os.Getenv("NTFY_AUTH_FILE")
+	pswdSize, err = strconv.Atoi(os.Getenv("PSWD_SIZE"))
+	if err != nil {
+		pswdSize = 18
+	}
+
 	if fileLoc == "" || ntfyServerAddr == "" {
 		panic("NTFY Server or NTFY auth file location cannot be empty")
 	}
 	db, err = sql.Open("sqlite3", fileLoc)
+
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
 	err = db.Ping()
+
 	if err != nil {
 		panic(err)
 	}
