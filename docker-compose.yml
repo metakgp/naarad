@@ -36,8 +36,8 @@ services:
           - naarad-backend
     volumes:
       - naarad-auth:/src/
-      - ./credentials.json:/credentials.json
-      - ./token.json:/token.json
+      - ./backend/credentials.json:/credentials.json
+      - ./backend/token.json:/token.json
     restart: unless-stopped
 
 networks:
