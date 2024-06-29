@@ -28,6 +28,7 @@ services:
         restart: unless-stopped
 
     naarad-reg:
+        image: naarad-reg
         build:
             context: backend/
             dockerfile: Dockerfile
