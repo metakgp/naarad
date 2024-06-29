@@ -34,7 +34,7 @@ export const Register: Component = () => {
                 }, 3000);
             }
             else if(data.status == 401){
-                document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad-signup.metakgp.org"
+                document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
             }
             else {
                 setIsErr(true)
