@@ -1,6 +1,6 @@
 import { Component, createSignal, onMount } from "solid-js";
 import { BACKEND_URL } from "../constants";
-import { Spinner } from "../components/Spinner";
+import spinner from "../assets/spinner.svg"
 import check from "../assets/check.png"
 import cross from "../assets/cross.png"
 
@@ -31,7 +31,7 @@ export const Register: Component = () => {
                 setMsg("Search your institute email for credentials")
 
                 setTimeout(() => {
-                    document.location = "https://naarad.metakgp.org"
+                    document.location = "https://naarad.metakgp.org/login"
                 }, 3000);
             }
             else if(data.status == 401){
@@ -43,7 +43,7 @@ export const Register: Component = () => {
             else {
                 setIsLoad(false);
                 setIsErr(true)
-                setStatus("Failed to Register User")
+                setStatus("User Registration Failed")
                 data.text().then((bodyData) => {
                     setMsg(bodyData)
                 })
@@ -51,7 +51,7 @@ export const Register: Component = () => {
         }).catch((err) => {
             setIsLoad(false);
             setIsErr(true)
-            setStatus("Failed to Register User")
+            setStatus("User Registration Failed")
             setMsg(err.toString())
         })
     })
@@ -69,7 +69,7 @@ export const Register: Component = () => {
                 </div>
                 <div class="reg-status">
                     <div class="reg-status-svg">
-                        {getIsLoad() == true ? <Spinner /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />)}
+                        {getIsLoad() == true ? <img src={spinner}/> : (getIsErr() == true ? <img src={cross}/> : <img src={check}/>)}
                     </div>
                     <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-text">{getMsg()}</div>
