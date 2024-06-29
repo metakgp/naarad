@@ -10,6 +10,10 @@
 6. Check your institute email for credentials and make sure to keep them safe for future use
 7. Follow through [webapp user login](#user-login) step
 
+| ![image](https://github.com/metakgp/naarad/assets/86282911/f4e828c6-fa58-496b-bf09-7cb6cd7d2b09) | ![image](https://github.com/metakgp/naarad/assets/86282911/94e0acad-d05c-4640-a75d-debb3276abcc) |
+| ---------------------------------- | -------------------------------- |
+| ![image](https://github.com/metakgp/naarad/assets/86282911/1aaa2595-15c1-4530-8c91-e06c1790382f) | ![image](https://github.com/metakgp/naarad/assets/86282911/5af29554-8b3a-4776-81fb-26a9af41128b) |
+
 ## Webapp
 
 ### User Login
@@ -18,9 +22,17 @@
 1. You will be prompted to enter username and password, enter those which you just received on your institute email
 2. Finally, press the `login` button, now you are authorised to access naarad and subscribe to limited topics
 
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/ab48f663-4f2c-41a5-95e6-c02a845cb368">
+</div>
+
 ### Configuring Notification
 
 Make sure to grant the webapp notification permission.
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/1b0115cb-0d79-4f70-99c5-7adeb2e92a9c">
+</div>
 
 #### Enabling WebPush
 
@@ -31,6 +43,10 @@ In order to receive notifications even if the [webapp's tab](https://naarad.meta
 
 > [!Tip]
 > It is recommeded to also change the `Delete Notifications` setting to `Never` in order to store old notifications
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/45ab7ef1-91d4-4fea-8375-6b0c70c4b9c4">
+</div>
 
 ### Subscribing to MFTP
 
@@ -45,6 +61,10 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 1. Click on `+ Subscribe to topic` button on the left panel
 2. Enter `kgp-mftp` in the text box and click `Subscrbe` button
 3. In case you were not logged in, it will require for credentials, enter the ones you received during [user registration](#user-registration)
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/43d66861-b5ef-4776-a940-21565da7b5a0">
+</div>
 
 ## Mobile Application (Android, iOS)
 
@@ -71,3 +91,6 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 5. Click the `Subscribe` button
 6. It will now prompt you to Login, enter the credentials received during [user registration](#user-registration)
 7. Click the `Login` button
+
+| ![](https://github.com/metakgp/naarad/assets/86282911/2e6cb3df-d65b-41a0-bcf0-7623607bf56b) | ![](https://github.com/metakgp/naarad/assets/86282911/0a65338a-705d-47dd-8fa7-e399e23f4908) |
+| ---------------------------------- | -------------------------------- |
