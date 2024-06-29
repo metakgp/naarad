@@ -131,7 +131,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	// Sending user credentials over mail
-	emailBody := fmt.Sprintf("Here are the credentials to sign in into Naarad.\n<b>Username</b>: %s\n<b>Password</b>: %s", username, password)
+	emailBody := fmt.Sprintf("Here are the credentials to sign in into Naarad.\n\nUsername: %s\nPassword: %s", username, password)
 	if sent, err := sendMail(userEmail, "Naarad Login Credentials | Metakgp", emailBody); err != nil || !sent {
 		fmt.Println("Sending Credentials Error: ", err.Error())
 		http.Error(res, "Failed to send user credentials", http.StatusInternalServerError)
