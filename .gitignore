@@ -1,6 +1,5 @@
 .DS_Store
 .vscode
 .env
-credentials.json
-token.json
+*.json
 *.db
