@@ -24,13 +24,17 @@ export const Register: Component = () => {
                 setMsg("Check your institute email for login credentials")
 
                 setTimeout(() => {
-                    document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/login"
+                    document.location = "https://naarad.metakgp.org/login"
                 }, 3000);
             }
             else if(data.status === 409){
                 setIsDup(true);
                 setStatus("User Already Registered!")
                 setMsg("Check your institute mail for login credentials")
+
+                setTimeout(() => {
+                    document.location = "https://naarad.metakgp.org/login"
+                }, 3000);
             }
             else if(data.status == 401){
                 document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad-signup.metakgp.org"
