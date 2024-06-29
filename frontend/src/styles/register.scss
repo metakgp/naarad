@@ -1,36 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 $medium: 1024px;
 
 .reg{
     width: 100vw;
     height: 100vh;
-    background-color: #1e1e2c;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+
     .reg-main{
-        padding: 2%;
-        height: 60%;
+        padding: 1.5rem 2rem;
         width: 25%;
         display: flex;
         justify-content: center;
         flex-direction: column;
         border-radius: 1em;
-        border: solid #000;
+        border: 2px solid #000;
         background-color: #1e1e2f;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        text-align: center;
+
         .reg-title{
-            height: 35%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin-bottom: 2rem;
+
             .reg-title-name{
-                font-family: "Titillium Web", sans-serif;
                 font-size: 5vh;
                 font-weight: 600;
-                padding-bottom: 5%;
+                padding-bottom: 0.2rem;
             }
 
             .reg-title-desc{
@@ -41,12 +40,11 @@ $medium: 1024px;
 
         .reg-status{
             height: 65%;
-            margin: 5% 10% 5% 10%;
 
             .reg-status-title{
-                height: 10%;
-                font-size: 1.75vh;
-                font-weight: 900;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
             }
 
             .reg-status-svg{
@@ -55,8 +53,8 @@ $medium: 1024px;
                 justify-content: center;
                 align-items: center;
                 img{
-                    max-height: 95%;
-                    max-width: 95%;
+                    max-height: 50%;
+                    max-width: 50%;
                     display: block;
                     height: auto;
                     width: auto;
@@ -64,15 +62,17 @@ $medium: 1024px;
             }
 
             .reg-status-text{
-                height: 20%;
+                margin-top: 1rem;
                 display: flex;
                 justify-content: center;
                 align-items: end;
+                font-size: 1.5rem;
+                font-size: 600;
             }
         }
 
         .reg-footer{
-            font-family: "Titillium Web", sans-serif;
+            margin-top: 2rem;
             height: 5%;
             a{
                 color: #fff;

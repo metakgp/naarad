@@ -1,12 +1,11 @@
 import type { Component } from 'solid-js'
-import logo from './logo.svg';
-import styles from './App.module.css';
 import { Route, Router } from '@solidjs/router';
 import { Register } from './pages/Register';
+import './styles/index.scss';
 
 const App: Component = () => {
   return (
-    <div class={styles.App}>
+    <div>
       <Router>
         <Route path="/" component={Register} />
       </Router>

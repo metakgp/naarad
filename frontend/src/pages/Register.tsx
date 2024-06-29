@@ -1,6 +1,5 @@
 import { Component, createSignal, onMount } from "solid-js";
 import { BACKEND_URL } from "../constants";
-import "../styles/Register.scss"
 import { Spinner } from "../components/Spinner";
 import check from "../assets/check.png"
 import cross from "../assets/cross.png"
