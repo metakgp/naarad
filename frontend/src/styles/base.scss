@@ -1,0 +1,13 @@
+$font-family: system-ui, Arial, sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    background-color: #1e1e2f;
+    color: #fff;
+}

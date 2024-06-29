@@ -1,5 +1,4 @@
 import { Component } from "solid-js";
-import "./Spinner.scss"
 export const Spinner: Component = () => {
   
     return (
