@@ -217,8 +217,8 @@ web-root: "/"
 # - enable-login allows users to log in via the web app, or API
 # - enable-reservations allows users to reserve topics (if their tier allows it)
 #
-# enable-signup: false
-# enable-login: false
+enable-signup: true
+enable-login: true
 # enable-reservations: false
 
 # Server URL of a Firebase/APNS-connected ntfy server (likely "https://ntfy.sh").

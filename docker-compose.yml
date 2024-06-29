@@ -1,36 +1,59 @@
 services:
-  naarad:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - TZ=IST
-    env_file:
-      - .env
-    networks:
-      metaploy-network:
-        aliases:
-          - naarad
-    volumes:
-      - nginx-config-volume:/etc/nginx/sites-enabled
-      - naarad-cache:/var/cache/ntfy
-      - naarad-auth:/var/lib/ntfy
-    healthcheck:
-        test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:8000/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
-        interval: 60s
-        timeout: 10s
-        retries: 3
-        start_period: 40s
-    restart: unless-stopped
+    naarad:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            - TZ=IST
+        env_file:
+            - .env
+        networks:
+            metaploy-network:
+                aliases:
+                    - naarad
+        volumes:
+            - nginx-config-volume:/etc/nginx/sites-enabled
+            - naarad-cache:/var/cache/ntfy
+            - naarad-auth:/var/lib/ntfy
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "wget -q --tries=1 http://localhost:8000/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1",
+                ]
+            interval: 60s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        restart: unless-stopped
+
+    naarad-reg:
+        build:
+            context: backend/
+            dockerfile: Dockerfile
+        environment:
+            - TZ=IST
+            - NTFY_SERVER=http://naarad:8000
+            - NTFY_AUTH_FILE=/src/user.db
+            - PASSWORD_SIZE=18
+        networks:
+            metaploy-network:
+                aliases:
+                    - naarad-reg
+        volumes:
+            - naarad-auth:/src/
+            - ./backend/credentials.json:/credentials.json
+            - ./backend/token.json:/token.json
+        restart: unless-stopped
 
 networks:
-  metaploy-network:
-    external: true
-    name: metaploy-network
+    metaploy-network:
+        external: true
+        name: metaploy-network
 
 volumes:
-  nginx-config-volume:
-    external: true
-    name: metaploy-nginx-config-volume
-  naarad-cache:
-  naarad-auth:
+    nginx-config-volume:
+        external: true
+        name: metaploy-nginx-config-volume
+    naarad-cache:
+    naarad-auth:
