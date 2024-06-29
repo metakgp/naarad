@@ -4,23 +4,13 @@ import toast from "solid-toast";
 import spinner from "../assets/spinner.svg";
 import check from "../assets/check.png";
 import cross from "../assets/cross.png";
+import { RedirectToast } from "../components/RedirectToast";
 
 export const Register: Component = () => {
     const [getStatus, setStatus] = createSignal("Initiating User Registration");
     const [getMsg, setMsg] = createSignal("");
     const [getIsLoad, setIsLoad] = createSignal(true);
     const [getIsErr, setIsErr] = createSignal(false);
-
-    function redirectToSite(url: string) {
-        return new Promise((resolve, reject) => {
-            try {
-                window.location.href = url;
-                resolve(url);
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
 
     onMount(() => {
         fetch(BACKEND_URL + "/register", {
@@ -33,24 +23,48 @@ export const Register: Component = () => {
                     setStatus("User Registration Successful");
                     setMsg("Credentials sent to your institute email");
 
-                    toast.promise(redirectToSite("https://example.com"), {
-                        loading: "Redirecting...",
-                        success: (data) => <span>Redirected to {}</span>,
-                        error: <span>Redirection failed</span>,
-                    });
+                    toast.custom(
+                        (t) => (
+                            <RedirectToast
+                                duration={3000}
+                                redirect_url="https://naarad.metakgp.org/login"
+                                url_name="Naarad Login"
+                                t={t}
+                            />
+                        ),
+                        { duration: 3000 }
+                    );
                 } else if (data.status === 409) {
                     setIsLoad(false);
                     setStatus("User Already Registered");
                     setMsg("Search your institute email for credentials");
 
-                    // setTimeout(() => {
-                    //     document.location = "https://naarad.metakgp.org/login"
-                    // }, 3000);
+                    toast.custom(
+                        (t) => (
+                            <RedirectToast
+                                duration={3000}
+                                redirect_url="https://naarad.metakgp.org/login"
+                                url_name="Naarad Login"
+                                t={t}
+                            />
+                        ),
+                        { duration: 3000 }
+                    );
                 } else if (data.status == 401) {
                     setIsLoad(true);
                     setStatus("Redirecting to Heimdall");
 
-                    // document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
+                    toast.custom(
+                        (t) => (
+                            <RedirectToast
+                                duration={3000}
+                                redirect_url="https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
+                                url_name="Heimdall"
+                                t={t}
+                            />
+                        ),
+                        { duration: 3000 }
+                    );
                 } else {
                     setIsLoad(false);
                     setIsErr(true);
