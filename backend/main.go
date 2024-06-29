@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -12,7 +11,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/rs/cors"
 )
@@ -148,19 +146,16 @@ func register(res http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println(err)
-	}
-
 	initMailer()
 
-	ntfyServerAddr = os.Getenv("NTFY_SERVER")
-	pswdSize, err = strconv.Atoi(os.Getenv("PASSWORD_SIZE"))
+	passwordSize, err := strconv.Atoi(os.Getenv("PASSWORD_SIZE"))
 	if err != nil {
 		pswdSize = 18
+	} else {
+		pswdSize = passwordSize
 	}
 
+	ntfyServerAddr = os.Getenv("NTFY_SERVER")
 	fileLoc := os.Getenv("NTFY_AUTH_FILE")
 	if fileLoc == "" || ntfyServerAddr == "" {
 		panic("NTFY Server or NTFY auth file location cannot be empty")

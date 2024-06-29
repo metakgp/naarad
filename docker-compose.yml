@@ -33,9 +33,8 @@ services:
             dockerfile: Dockerfile
         environment:
             - TZ=IST
-            - NTFY_SERVER=http://naarad:8000
-            - NTFY_AUTH_FILE=/src/user.db
-            - PASSWORD_SIZE=18
+        env_file:
+            - .env
         networks:
             metaploy-network:
                 aliases:
