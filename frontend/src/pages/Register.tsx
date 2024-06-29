@@ -8,7 +8,7 @@ import { RedirectToast } from "../components/RedirectToast";
 
 export const Register: Component = () => {
     const [getStatus, setStatus] = createSignal("Initiating User Registration");
-    const [getMsg, setMsg] = createSignal("");
+    const [getMsg, setMsg] = createSignal("\u00A0");
     const [getIsLoad, setIsLoad] = createSignal(true);
     const [getIsErr, setIsErr] = createSignal(false);
 
@@ -102,18 +102,19 @@ export const Register: Component = () => {
                 </div>
                 <div class="reg-status">
                     <div class="reg-status-title">{getStatus()}</div>
-                    <div class="reg-status-text">{getMsg()}</div>
+                    <div class="reg-status-text">{`${getMsg()}`}</div>
                 </div>
                 <div class="reg-footer">
-                    <h3 class="reg-footer">
-                        Made with ❤️ and {"</>"} by{" "}
+                    <p class="reg-footer">
+                        Made with ❤️ and {"</>"}
+                        <br/>
                         <a
                             href="https://github.com/metakgp/naarad"
                             target="_blank"
                         >
-                            Metakgp
+                            metaKGP
                         </a>
-                    </h3>
+                    </p>
                 </div>
             </div>
         </div>
