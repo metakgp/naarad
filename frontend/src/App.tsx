@@ -1,16 +1,15 @@
-import type { Component } from 'solid-js'
-import { Route, Router } from '@solidjs/router';
-import { Register } from './pages/Register';
-import './styles/index.scss';
+import type { Component } from "solid-js";
+import { Register } from "./pages/Register";
+import "./styles/index.scss";
+import { Toaster } from "solid-toast";
 
 const App: Component = () => {
-  return (
-    <div>
-      <Router>
-        <Route path="/" component={Register} />
-      </Router>
-    </div>
-  );
+    return (
+        <>
+            <Toaster position="bottom-center" gutter={8} />
+            <Register />
+        </>
+    );
 };
 
 export default App;
