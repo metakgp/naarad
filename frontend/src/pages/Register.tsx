@@ -20,13 +20,13 @@ export const Register: Component = () => {
         }).then((data) => {
             setIsLoad(false);
             if(data.ok){
-                setMsg("Successfully Created User")
                 setStatus("User Registration Successful!")
+                setMsg("Successfully Created User")
             }
             else if(data.status === 409){
                 setIsDup(true);
-                setMsg("User already present. Check your institute mail for credentials.")
                 setStatus("User Already Registered!")
+                setMsg("Check your institute mail for credentials")
             }
             else if(data.status == 401){
                 document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad-signup.metakgp.org"
