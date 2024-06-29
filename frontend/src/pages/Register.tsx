@@ -5,7 +5,7 @@ import check from "../assets/check.png"
 import cross from "../assets/cross.png"
 
 export const Register: Component = () => {
-    const [getStatus, setStatus] = createSignal("Registering user...");
+    const [getStatus, setStatus] = createSignal("Initiating User Registration");
     const [getMsg, setMsg] = createSignal("");
     const [getIsLoad, setIsLoad] = createSignal(true)
     const [getIsErr, setIsErr] = createSignal(false)
@@ -16,29 +16,34 @@ export const Register: Component = () => {
             method:"GET",
             credentials: 'include'
         }).then((data) => {
-            setIsLoad(false);
             if(data.ok){
-                setStatus("User Registration Successful!")
-                setMsg("Check your institute email for login credentials")
+                setIsLoad(false);
+                setStatus("User Registration Successful")
+                setMsg("Credentials sent to your institute email")
 
                 setTimeout(() => {
                     document.location = "https://naarad.metakgp.org/login"
                 }, 3000);
             }
             else if(data.status === 409){
-                setStatus("User Already Registered!")
-                setMsg("Check your institute mail for login credentials")
+                setIsLoad(false);
+                setStatus("User Already Registered")
+                setMsg("Search your institute email for credentials")
 
                 setTimeout(() => {
-                    document.location = "https://naarad.metakgp.org/login"
+                    document.location = "https://naarad.metakgp.org"
                 }, 3000);
             }
             else if(data.status == 401){
+                setIsLoad(true);
+                setStatus("Redirecting to Heimdall")
+
                 document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
             }
             else {
+                setIsLoad(false);
                 setIsErr(true)
-                setStatus("User Registration Error!")
+                setStatus("Failed to Register User")
                 data.text().then((bodyData) => {
                     setMsg(bodyData)
                 })
@@ -46,7 +51,7 @@ export const Register: Component = () => {
         }).catch((err) => {
             setIsLoad(false);
             setIsErr(true)
-            setStatus("User Registration Error!")
+            setStatus("Failed to Register User")
             setMsg(err.toString())
         })
     })
@@ -56,21 +61,21 @@ export const Register: Component = () => {
             <div class="reg-main">
                 <div class="reg-title">
                     <div class="reg-title-name">
-                        MetaKGP Naarad
+                        Naarad
                     </div>
                     <div class="reg-title-desc">
-                        Naarad Registration for accessing notifications
+                        Delivering real-time notices to KGPians
                     </div>
                 </div>
                 <div class="reg-status">
-                    <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-svg">
                         {getIsLoad() == true ? <Spinner /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />)}
                     </div>
+                    <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-text">{getMsg()}</div>
                 </div>
                 <div class="reg-footer">
-                    <h3 class="reg-footer">Made with ❤️ and {"</>"} by <a href="https://github.com/metakgp/naarad" target="_blank">MetaKGP</a></h3>
+                    <h3 class="reg-footer">Made with ❤️ and {"</>"} by <a href="https://github.com/metakgp/naarad" target="_blank">Metakgp</a></h3>
                 </div>
             </div>
         </div>

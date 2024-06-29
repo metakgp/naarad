@@ -9,9 +9,10 @@ $medium: 1024px;
 
     .reg-main{
         padding: 1.5rem 2rem;
-        width: 25%;
+        height: 500px;
+        width: 400px;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: column;
         border-radius: 1em;
         border: 2px solid #000;
@@ -27,63 +28,51 @@ $medium: 1024px;
             margin-bottom: 2rem;
 
             .reg-title-name{
-                font-size: 3rem;
+                font-size: 2.5rem;
                 font-weight: 600;
                 padding-bottom: 0.2rem;
             }
 
             .reg-title-desc{
-                font-size: 2vh;
+                font-size: 1rem;
                 color: hsl(215, 20.2%, 65.1%);
             }
         }
 
         .reg-status{
-            height: 65%;
-
             .reg-status-title{
+                margin-top: 2rem;
                 font-size: 1.5rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
+                font-weight: 500;
             }
 
             .reg-status-svg{
-                height: 70%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 img{
-                    max-height: 50%;
-                    max-width: 50%;
+                    height: 100px;
+                    width: 100px;
                     display: block;
-                    height: auto;
-                    width: auto;
                 }
             }
 
             .reg-status-text{
-                margin-top: 1rem;
+                margin-top: 0.2rem;
                 display: flex;
                 justify-content: center;
                 align-items: end;
-                font-size: 1.5rem;
-                font-size: 600;
+                font-size: 1.15rem;
+                font-weight: 400;
+                color: hsl(215, 20.2%, 65.1%);
             }
         }
 
         .reg-footer{
-            margin-top: 2rem;
-            height: 5%;
+            margin-top: 1.5rem;
             a{
                 color: #fff;
             }
-        }
-        
-
-        @media screen and (max-width: $medium){
-            padding: 5%;
-            height: 70%;
-            width: 80%;
         }
     }
 }
