@@ -12,7 +12,14 @@ export const Register: Component = () => {
     const [getIsLoad, setIsLoad] = createSignal(true);
     const [getIsErr, setIsErr] = createSignal(false);
 
+    const PROD = import.meta.env.PROD;
+
     onMount(() => {
+        if (!PROD) {
+            setTimeout(() => {
+                setMsg("This is a dummy message for development alksdfjalksdfjalskdjflaksjfdlaksjdflkasjfda");
+            }, 3000);
+        }
         fetch(BACKEND_URL + "/register", {
             method: "GET",
             credentials: "include",
@@ -23,48 +30,54 @@ export const Register: Component = () => {
                     setStatus("User Registration Successful");
                     setMsg("Credentials sent to your institute email");
 
-                    toast.custom(
-                        (t) => (
-                            <RedirectToast
-                                duration={3000}
-                                redirect_url="https://naarad.metakgp.org/login"
-                                url_name="Naarad Login"
-                                t={t}
-                            />
-                        ),
-                        { duration: 3000 }
-                    );
+                    if (PROD) {
+                        toast.custom(
+                            (t) => (
+                                <RedirectToast
+                                    duration={3000}
+                                    redirect_url="https://naarad.metakgp.org/login"
+                                    url_name="Naarad Login"
+                                    t={t}
+                                />
+                            ),
+                            { duration: 3000 }
+                        );
+                    }
                 } else if (data.status === 409) {
                     setIsLoad(false);
                     setStatus("User Already Registered");
                     setMsg("Search your institute email for credentials");
 
-                    toast.custom(
-                        (t) => (
-                            <RedirectToast
-                                duration={3000}
-                                redirect_url="https://naarad.metakgp.org/login"
-                                url_name="Naarad Login"
-                                t={t}
-                            />
-                        ),
-                        { duration: 3000 }
-                    );
+                    if (PROD) {
+                        toast.custom(
+                            (t) => (
+                                <RedirectToast
+                                    duration={3000}
+                                    redirect_url="https://naarad.metakgp.org/login"
+                                    url_name="Naarad Login"
+                                    t={t}
+                                />
+                            ),
+                            { duration: 3000 }
+                        );
+                    }
                 } else if (data.status == 401) {
                     setIsLoad(true);
                     setStatus("Redirecting to Heimdall");
 
-                    toast.custom(
-                        (t) => (
-                            <RedirectToast
-                                duration={3000}
-                                redirect_url="https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
-                                url_name="Heimdall"
-                                t={t}
-                            />
-                        ),
-                        { duration: 3000 }
-                    );
+                    if (PROD) {
+                        toast.custom(
+                            (t) => (
+                                <RedirectToast
+                                    duration={3000}
+                                    redirect_url="https://heimdall.metakgp.org?redirect_url=https://naarad.metakgp.org/signup"
+                                    url_name="Heimdall"
+                                    t={t}
+                                />
+                            ),
+                            { duration: 3000 }
+                        );
+                    }
                 } else {
                     setIsLoad(false);
                     setIsErr(true);
@@ -107,7 +120,7 @@ export const Register: Component = () => {
                 <div class="reg-footer">
                     <p class="reg-footer">
                         Made with ❤️ and {"</>"}
-                        <br/>
+                        <br />
                         <a
                             href="https://github.com/metakgp/naarad"
                             target="_blank"
