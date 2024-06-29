@@ -11,7 +11,6 @@ export const Register: Component = () => {
     const [getMsg, setMsg] = createSignal("\u00A0");
     const [getIsLoad, setIsLoad] = createSignal(true);
     const [getIsErr, setIsErr] = createSignal(false);
-
     const PROD = import.meta.env.PROD;
 
     onMount(() => {
