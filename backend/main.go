@@ -173,7 +173,7 @@ func main() {
 
 	http.HandleFunc("GET /register", register)
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"https://naarad.metakgp.org", "http://localhost:3000"},
+		AllowedOrigins:   []string{"https://naarad.metakgp.org", "https://naarad-signup.metakgp.org", "http://localhost:3000"},
 		AllowCredentials: true,
 	})
 	fmt.Println("Naarad Backend Server running on port : 5173")

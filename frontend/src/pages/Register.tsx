@@ -1,4 +1,5 @@
 import { Component, createSignal, onMount } from "solid-js";
+import { BACKEND_URL } from "../constants";
 import "../styles/Register.scss"
 import { Spinner } from "../components/Spinner";
 import check from "../assets/check.png"
@@ -13,7 +14,7 @@ export const Register: Component = () => {
     
     
     onMount(() => {
-        fetch(import.meta.env.BACKEND_URL+'/register', {
+        fetch(BACKEND_URL+'/register', {
             method:"GET",
             credentials: 'include'
         }).then((data) => {
