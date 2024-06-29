@@ -64,11 +64,12 @@ func PasswordGenerator(passwordLength int) string {
 }
 
 func register(res http.ResponseWriter, req *http.Request) {
-	cookie, _ := req.Cookie("heimdall")
-	// It won't throw any error.
-	// The service will be protected by heimdall
-	// Hence if this endpoint is being triggered then
-	// It means that cookie has to be present
+	cookie, err := req.Cookie("heimdall")
+	if err != nil {
+		fmt.Println("Cookie Error (Heimdall token not found): ", err.Error())
+		http.Error(res, "No Heimdall session token received", http.StatusUnauthorized)
+		return
+	}
 	tokenString := cookie.Value
 
 	// Get email from JWT
@@ -108,6 +109,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 		http.Error(res, "User already registered", resp.StatusCode)
 		return
 	} else if resp.StatusCode != 200 {
+		fmt.Println("User registeration failed")
 		http.Error(res, "Failed to register user", resp.StatusCode)
 		return
 	}
