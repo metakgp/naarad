@@ -9,7 +9,6 @@ export const Register: Component = () => {
     const [getMsg, setMsg] = createSignal("");
     const [getIsLoad, setIsLoad] = createSignal(true)
     const [getIsErr, setIsErr] = createSignal(false)
-    const [getIsDup, setIsDup] = createSignal(false)
     
     
     onMount(() => {
@@ -27,7 +26,6 @@ export const Register: Component = () => {
                 }, 3000);
             }
             else if(data.status === 409){
-                setIsDup(true);
                 setStatus("User Already Registered!")
                 setMsg("Check your institute mail for login credentials")
 
@@ -45,6 +43,11 @@ export const Register: Component = () => {
                     setMsg(bodyData)
                 })
             }
+        }).catch((err) => {
+            setIsLoad(false);
+            setIsErr(true)
+            setStatus("User Registration Error!")
+            setMsg(err.toString())
         })
     })
 
@@ -62,7 +65,7 @@ export const Register: Component = () => {
                 <div class="reg-status">
                     <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-svg">
-                        {getIsLoad() == true ? <Spinner /> : (getIsDup() == true ? <img src={cross} /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />))}
+                        {getIsLoad() == true ? <Spinner /> : (getIsErr() == true ? <img src={cross}/> : <img src={check} />)}
                     </div>
                     <div class="reg-status-text">{getMsg()}</div>
                 </div>
