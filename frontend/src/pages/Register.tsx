@@ -17,7 +17,7 @@ export const Register: Component = () => {
     onMount(() => {
         if (!PROD) {
             setTimeout(() => {
-                setMsg("This is a dummy message for development alksdfjalksdfjalskdjflaksjfdlaksjdflkasjfda");
+                setMsg("This is a dummy message for development");
             }, 3000);
         }
         fetch(BACKEND_URL + "/register", {
@@ -112,8 +112,6 @@ export const Register: Component = () => {
                             <img src={check} />
                         )}
                     </div>
-                </div>
-                <div class="reg-status">
                     <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-text">{`${getMsg()}`}</div>
                 </div>

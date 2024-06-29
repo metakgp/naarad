@@ -38,7 +38,7 @@ $medium: 1024px;
             }
 
             .reg-status-svg{
-                margin-top: 4rem;
+                margin-top: 2rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -49,16 +49,14 @@ $medium: 1024px;
                 }
             }
 
-        }
-
-        .reg-status{
             .reg-status-title{
+                margin-top: 1rem;
                 font-size: 1.5rem;
                 font-weight: 600;
             }
 
             .reg-status-text{
-                margin-top: 0.2rem;
+                margin-top: -0.3rem;
                 display: flex;
                 justify-content: center;
                 align-items: end;
@@ -68,8 +66,8 @@ $medium: 1024px;
             }
         }
 
+
         .reg-footer{
-            margin-top: 1.5rem;
             font-size: 1.25rem;
             font-weight: 600;
             a{
