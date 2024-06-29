@@ -29,7 +29,7 @@ export const Register: Component = () => {
                 setStatus("User Already Registered!")
             }
             else if(data.status == 401){
-                document.location = "https://heimdall.metakgp.org/"
+                document.location = "https://heimdall.metakgp.org?redirect_url=https://naarad-signup.metakgp.org"
             }
             else {
                 setIsErr(true)
