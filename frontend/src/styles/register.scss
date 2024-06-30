@@ -15,8 +15,7 @@ $medium: 1024px;
         justify-content: space-between;
         flex-direction: column;
         border-radius: 1em;
-        border: 2px solid #000;
-        background-color: #1e1e2f;
+        background-color: #212121;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         text-align: center;
 
@@ -25,53 +24,56 @@ $medium: 1024px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
 
             .reg-title-name{
-                font-size: 2.5rem;
-                font-weight: 600;
-                padding-bottom: 0.2rem;
+                font-size: 4rem;
+                font-weight: 900;
+                line-height: 4rem;
             }
 
             .reg-title-desc{
                 font-size: 1rem;
-                color: hsl(215, 20.2%, 65.1%);
-            }
-        }
-
-        .reg-status{
-            .reg-status-title{
-                margin-top: 2rem;
-                font-size: 1.5rem;
-                font-weight: 500;
+                font-weight: 600;
+                color: #94a3b8;
             }
 
             .reg-status-svg{
+                margin-top: 2.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                img{
+                img, svg {
                     height: 100px;
                     width: 100px;
                     display: block;
                 }
             }
 
+            .reg-status-title{
+                margin-top: 1rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
             .reg-status-text{
-                margin-top: 0.2rem;
+                margin-top: -0.3rem;
                 display: flex;
                 justify-content: center;
                 align-items: end;
                 font-size: 1.15rem;
                 font-weight: 400;
-                color: hsl(215, 20.2%, 65.1%);
+                color: #94a3b8;
             }
         }
 
+
         .reg-footer{
-            margin-top: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             a{
+                font-size: 1.5rem;
                 color: #fff;
+                font-weight: 900;
             }
         }
     }
