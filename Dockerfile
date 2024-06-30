@@ -1,4 +1,4 @@
-FROM binwiederhier/ntfy
+FROM metakgporg/naarad-ntfy
 
 RUN apk --no-cache add jq
 
