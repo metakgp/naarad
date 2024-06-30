@@ -112,9 +112,9 @@ behind-proxy: true
 # - attachment-expiry-duration is the duration after which uploaded attachments will be deleted (e.g. 3h, 20h)
 #
 attachment-cache-dir: /var/cache/ntfy/attachments
-attachment-total-size-limit: "5G"
-attachment-file-size-limit: "10M"
-attachment-expiry-duration: "72h"
+attachment-total-size-limit: "1G"
+attachment-file-size-limit: "5M"
+attachment-expiry-duration: "120h"
 
 # If enabled, allow outgoing e-mail notifications via the 'X-Email' header. If this header is set,
 # messages will additionally be sent out as e-mail using an external SMTP server.
@@ -250,7 +250,7 @@ upstream-base-url: "https://ntfy.sh"
 
 # Rate limiting: Total number of topics before the server rejects new topics.
 #
-global-topic-limit: 100
+global-topic-limit: 30
 
 # Rate limiting: Number of subscriptions per visitor (IP address)
 #
