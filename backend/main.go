@@ -96,8 +96,11 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, username, password)
-	req, _ = http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
-	resp, err = client.Do(req)
+	reqNtfy, _ := http.NewRequest("POST", ntfyServerAddr+"/v1/account", strings.NewReader(signupData))
+	for name, values := range req.Header {
+        reqNtfy.Header[name] = values
+    }
+	resp, err = client.Do(reqNtfy)
 	if err != nil {
 		fmt.Println("NTFY User Registration API Error: ", err.Error())
 		http.Error(res, "Failed to request user registration for Naarad", http.StatusInternalServerError)

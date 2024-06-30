@@ -69,7 +69,7 @@ listen-http: ":8000"
 #   ntfy user and group by running: chown ntfy.ntfy <filename>.
 #
 cache-file: /var/cache/ntfy/cache.db
-cache-duration: "24h"
+cache-duration: "3d"
 cache-batch-size: 25
 cache-batch-timeout: "1s"
 cache-startup-queries: |
