@@ -265,7 +265,7 @@ global-topic-limit: 100
 #
 # visitor-request-limit-burst: 60
 # visitor-request-limit-replenish: "5s"
-# visitor-request-limit-exempt-hosts: ""
+visitor-request-limit-exempt-hosts: "naarad-api.metakgp.org,naarad_api"
 
 # Rate limiting: Hard daily limit of messages per visitor and day. The limit is reset
 # every day at midnight UTC. If the limit is not set (or set to zero), the request
