@@ -12,9 +12,12 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
 6. Check your institute email for credentials and make sure to keep them safe for future use
 7. Follow through [webapp user login](#user-login) step
 
+> [!Tip]
+> It is recommended to change the auto-generated password.
+
 | ![image](https://github.com/metakgp/naarad/assets/86282911/f4e828c6-fa58-496b-bf09-7cb6cd7d2b09) | ![image](https://github.com/metakgp/naarad/assets/86282911/94e0acad-d05c-4640-a75d-debb3276abcc) |
 | ---------------------------------- | -------------------------------- |
-| ![image](https://github.com/metakgp/naarad/assets/86282911/1aaa2595-15c1-4530-8c91-e06c1790382f) | ![image](https://github.com/metakgp/naarad/assets/86282911/5af29554-8b3a-4776-81fb-26a9af41128b) |
+| ![image](https://github.com/metakgp/naarad/assets/86282911/1aaa2595-15c1-4530-8c91-e06c1790382f) | ![image](https://github.com/metakgp/naarad/assets/86282911/5a9ef215-e805-4621-a257-4a9613e9a895) |
 
 ## Webapp
 
@@ -109,3 +112,14 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 | ![](https://github.com/metakgp/naarad/assets/86282911/a3cfdff6-2267-4561-9c7c-bde645afe56f) | ![](https://github.com/metakgp/naarad/assets/86282911/4402c5e0-6a67-4381-af73-6cc01dede855) |
 | ---------------------------------- | -------------------------------- |
+
+## Changing User Password
+
+1. Click on `Account` on the left pane of the screen
+2. Click on `pencil icon` on right of "password" entry
+3. Fill the _current_, _new_ and _confirm_ password fields
+4. Click on `Change Password` button
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/647f290d-51e8-4340-8033-61e47e326f74">
+</div>
