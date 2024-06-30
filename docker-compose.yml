@@ -1,5 +1,7 @@
 services:
     naarad:
+        image: metakgporg/naarad
+        container_name: naarad
         build:
             context: .
             dockerfile: Dockerfile
@@ -29,7 +31,8 @@ services:
         restart: unless-stopped
 
     naarad-api:
-        image: naarad-api
+        image: metakgporg/naarad-api
+        container_name: naarad-api
         build:
             context: backend/
             dockerfile: Dockerfile
