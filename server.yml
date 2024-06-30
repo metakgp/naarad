@@ -70,9 +70,14 @@ listen-http: ":8000"
 #
 cache-file: /var/cache/ntfy/cache.db
 cache-duration: "24h"
-# cache-startup-queries:
-# cache-batch-size: 0
-# cache-batch-timeout: "0ms"
+cache-batch-size: 25
+cache-batch-timeout: "1s"
+cache-startup-queries: |
+    pragma journal_mode = WAL;
+    pragma synchronous = normal;
+    pragma temp_store = memory;
+    pragma busy_timeout = 15000;
+    vacuum;
 
 # If set, access to the ntfy server and API can be controlled on a granular level using
 # the 'ntfy user' and 'ntfy access' commands. See the --help pages for details, or check the docs.
@@ -113,8 +118,8 @@ behind-proxy: true
 #
 attachment-cache-dir: /var/cache/ntfy/attachments
 attachment-total-size-limit: "1G"
-attachment-file-size-limit: "5M"
-attachment-expiry-duration: "120h"
+attachment-file-size-limit: "2M"
+attachment-expiry-duration: "30d"
 
 # If enabled, allow outgoing e-mail notifications via the 'X-Email' header. If this header is set,
 # messages will additionally be sent out as e-mail using an external SMTP server.
@@ -263,9 +268,9 @@ global-topic-limit: 30
 #   exempt from request rate limiting. Hostnames are resolved at the time the server is started.
 #   Example: "1.2.3.4,ntfy.example.com,8.7.6.0/24"
 #
-# visitor-request-limit-burst: 60
-# visitor-request-limit-replenish: "5s"
-# visitor-request-limit-exempt-hosts: ""
+visitor-request-limit-burst: 30
+visitor-request-limit-replenish: "5s"
+visitor-request-limit-exempt-hosts: ""
 
 # Rate limiting: Hard daily limit of messages per visitor and day. The limit is reset
 # every day at midnight UTC. If the limit is not set (or set to zero), the request
@@ -285,7 +290,7 @@ global-topic-limit: 30
 # - visitor-attachment-daily-bandwidth-limit is the total daily attachment download/upload traffic limit per visitor
 #
 # visitor-attachment-total-size-limit: "100M"
-# visitor-attachment-daily-bandwidth-limit: "500M"
+visitor-attachment-daily-bandwidth-limit: "50M"
 
 # Rate limiting: Enable subscriber-based rate limiting (mostly used for UnifiedPush)
 #
@@ -358,9 +363,9 @@ global-topic-limit: 30
 #   ntfy user and group by running: chown ntfy.ntfy <filename>.
 #
 # Example (good for production):
-log-level: info
-log-format: json
-log-file: /var/log/ntfy.log
+#   log-level: info
+#   log-format: json
+#   log-file: /var/log/ntfy.log
 #
 # Example level overrides (for debugging, only use temporarily):
 #   log-level-overrides:
@@ -368,7 +373,7 @@ log-file: /var/log/ntfy.log
 #      - "visitor_ip=1.2.3.4 -> debug"
 #      - "time_taken_ms -> debug"
 #
-# log-level: info
+log-level: debug
+log-format: json
+log-file: /var/log/ntfy.log
 # log-level-overrides:
-# log-format: text
-# log-file:
