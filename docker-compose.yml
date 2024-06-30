@@ -15,6 +15,7 @@ services:
             - nginx-config-volume:/etc/nginx/sites-enabled
             - naarad-cache:/var/cache/ntfy
             - naarad-auth:/var/lib/ntfy
+            - ./server.yml:/etc/ntfy/server.yml
         healthcheck:
             test:
                 [
