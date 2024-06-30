@@ -128,7 +128,15 @@ func register(res http.ResponseWriter, req *http.Request) {
 	// Provide read-only access for kgp-* channels to the user
 	queryGenAccess := fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "kgp-%%", 1, 0, "")`, userId)
 	if _, err = db.Exec(queryGenAccess); err != nil {
-		fmt.Println("Granting Access Error: ", err.Error())
+		fmt.Println("Granting Access Error (kgp-*): ", err.Error())
+		http.Error(res, "Internal Server Error (DB: Access Grant)", http.StatusInternalServerError)
+		return
+	}
+
+	// Provide read-only access for kgp-* channels to the user
+	queryGenAccess = fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "st_%%", 1, 0, "")`, userId)
+	if _, err = db.Exec(queryGenAccess); err != nil {
+		fmt.Println("Granting Access Error (st_*): ", err.Error())
 		http.Error(res, "Internal Server Error (DB: Access Grant)", http.StatusInternalServerError)
 		return
 	}
