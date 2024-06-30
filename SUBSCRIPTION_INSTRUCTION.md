@@ -1,12 +1,14 @@
 # Naarad Subscription Instruction
 
+
+
 ## User Registration
 
 1. Visit [Naarad Signup](https://naarad.metakgp.org/signup) page
-2. You will be prompted to enter you institute email
-3. Once entered, you will receive a verification OTP on the emtered email
-4. Enter the OTP in the required field and click the `Verify` button
-5. After a while, you will receive then receive a prompt on the screen saying `Credentials sent to your institute email`
+2. You will be prompted to enter your institute email
+3. Once email is entered, you will receive a verification OTP on the provided email
+4. Enter the OTP in the available field and click the `Verify` button
+5. After a while, you will then receive a prompt on the screen saying `Credentials sent to your institute email`
 6. Check your institute email for credentials and make sure to keep them safe for future use
 7. Follow through [webapp user login](#user-login) step
 
@@ -88,7 +90,7 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 2. Enter topic name as: `kgp-mftp`
 3. Check `Use another server`
 4. Replace `https://ntfy.sh` with `https://naarad.metakgp.org`
-5. Click the `Subscribe` button
+5. Press the `Subscribe` button
 6. It will now prompt you to Login, enter the credentials received during [user registration](#user-registration)
 7. Click the `Login` button
 
