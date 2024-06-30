@@ -1,6 +1,6 @@
 # Naarad Subscription Instruction
 
-
+Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries **news** and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad delivers news (noticies) to the KGP community.
 
 ## User Registration
 
@@ -96,3 +96,4 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 | ![](https://github.com/metakgp/naarad/assets/86282911/2e6cb3df-d65b-41a0-bcf0-7623607bf56b) | ![](https://github.com/metakgp/naarad/assets/86282911/0a65338a-705d-47dd-8fa7-e399e23f4908) |
 | ---------------------------------- | -------------------------------- |
+| ![](https://github.com/metakgp/naarad/assets/86282911/7969077b-32bf-4087-ab46-a09c89c85cc7) | ![](https://github.com/metakgp/naarad/assets/86282911/105834fe-8744-4d88-af61-4a7624f8db61) |
