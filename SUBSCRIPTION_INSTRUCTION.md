@@ -33,7 +33,7 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
 Make sure to grant the webapp notification permission.
 
 <div align="center">
-  <img src="https://github.com/metakgp/naarad/assets/86282911/1b0115cb-0d79-4f70-99c5-7adeb2e92a9c">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/ca0a7afd-17c0-4749-9cba-a0688cbc8f6f">
 </div>
 
 #### Enabling WebPush
@@ -44,10 +44,12 @@ In order to receive notifications even if the [webapp's tab](https://naarad.meta
 2. Enable `Background Notifications` (4th option from top)
 
 > [!Tip]
-> It is recommeded to also change the `Delete Notifications` setting to `Never` in order to store old notifications
+> To receive seamless real-time notifications, following configurations are recommended:
+> 1. Make sure the `Minimum Priority` is set to `Any Priority`, in order to not miss any notification
+> 2. Make sure the `Delete Notifications` is set to `Never`, in order to store old notifications
 
 <div align="center">
-  <img src="https://github.com/metakgp/naarad/assets/86282911/45ab7ef1-91d4-4fea-8375-6b0c70c4b9c4">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/a1f80492-9a8d-4d91-9a9a-1dfa86ac0842">
 </div>
 
 ### Subscribing to MFTP
@@ -86,14 +88,24 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 ### Subscribing to MFTP
 
+0. Make sure to click `Enable Now` for the banner regarding `Switching to WebSockets...`
 1. Click on `+` icon in bottom right corner
 2. Enter topic name as: `kgp-mftp`
 3. Check `Use another server`
 4. Replace `https://ntfy.sh` with `https://naarad.metakgp.org`
 5. Press the `Subscribe` button
 6. It will now prompt you to Login, enter the credentials received during [user registration](#user-registration)
-7. Click the `Login` button
+7. Click the `Login` button, you will be taken to the topic page
 
-| ![](https://github.com/metakgp/naarad/assets/86282911/2e6cb3df-d65b-41a0-bcf0-7623607bf56b) | ![](https://github.com/metakgp/naarad/assets/86282911/0a65338a-705d-47dd-8fa7-e399e23f4908) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/34db1e2a-f269-40fd-8e21-9a933f1ed8cb) | ![](https://github.com/metakgp/naarad/assets/86282911/2e6cb3df-d65b-41a0-bcf0-7623607bf56b) |
 | ---------------------------------- | -------------------------------- |
-| ![](https://github.com/metakgp/naarad/assets/86282911/7969077b-32bf-4087-ab46-a09c89c85cc7) | ![](https://github.com/metakgp/naarad/assets/86282911/105834fe-8744-4d88-af61-4a7624f8db61) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/0a65338a-705d-47dd-8fa7-e399e23f4908) | ![](https://github.com/metakgp/naarad/assets/86282911/7969077b-32bf-4087-ab46-a09c89c85cc7) |
+
+### Configuring the topic
+
+0. Once you [subscribe to the topic](#subscribing-to-mftp), then follow then configure the settings as below
+1. Click on the three dots on top-right corner and click on `Subscription Settings`
+2. Configure the settings as shown in the second image below
+
+| ![](https://github.com/metakgp/naarad/assets/86282911/a3cfdff6-2267-4561-9c7c-bde645afe56f) | ![](https://github.com/metakgp/naarad/assets/86282911/4402c5e0-6a67-4381-af73-6cc01dede855) |
+| ---------------------------------- | -------------------------------- |
