@@ -1,5 +1,7 @@
 FROM binwiederhier/ntfy
 
+RUN apk --no-cache add jq
+
 # Copy metaploy configuration
 COPY metaploy/naarad.metaploy.conf /
 COPY metaploy/postinstall.sh /
