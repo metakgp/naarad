@@ -31,12 +31,35 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+            - name: Cache Docker layers for Naarad
+              uses: actions/cache@v3
+              with:
+                  path: /tmp/.buildx-cache-naarad
+                  key: ${{ runner.os }}-buildx-naarad-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-buildx-naarad-
+
             - name: Build & Push Naarad
               uses: docker/build-push-action@v5
               with:
                   context: .
                   push: true
                   tags: ${{ secrets.DOCKERHUB_USERNAME }}/naarad:latest
+                  cache-from: type=local,src=/tmp/.buildx-cache-naarad
+                  cache-to: type=local,dest=/tmp/.buildx-cache-naarad-new,mode=max
+
+            - name: Move Naarad cache
+              run: |
+                  rm -rf /tmp/.buildx-cache-naarad
+                  mv /tmp/.buildx-cache-naarad-new /tmp/.buildx-cache-naarad
+
+            - name: Cache Docker layers for Naarad API
+              uses: actions/cache@v3
+              with:
+                  path: /tmp/.buildx-cache-naarad-api
+                  key: ${{ runner.os }}-buildx-naarad-api-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-buildx-naarad-api-
 
             - name: Build & Push Naarad API
               uses: docker/build-push-action@v5
@@ -44,6 +67,13 @@ jobs:
                   context: ./backend
                   push: true
                   tags: ${{ secrets.DOCKERHUB_USERNAME }}/naarad-api:latest
+                  cache-from: type=local,src=/tmp/.buildx-cache-naarad-api
+                  cache-to: type=local,dest=/tmp/.buildx-cache-naarad-api-new,mode=max
+
+            - name: Move Naarad API cache
+              run: |
+                  rm -rf /tmp/.buildx-cache-naarad-api
+                  mv /tmp/.buildx-cache-naarad-api-new /tmp/.buildx-cache-naarad-api
 
     push:
         name: Push Code Stage
