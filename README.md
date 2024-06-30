@@ -23,7 +23,7 @@
   <h3 align="center">Naarad</h3>
 
   <p align="center">
-    <i>Self-hosted ntfy server, serving kgpians, maintained by metaKGP</i>
+    <i>Self-hosted ntfy server, delivering notifications to KGPians</i>
     <br />
     <a href="https://naarad.metakgp.org">Website</a>
     ·
@@ -56,7 +56,8 @@
   </a>
 </div>
 
-Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries news and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad serves news (noticies) to the KGP community. It is a self-hosted [ntfy.sh](https://ntfy.sh) instance with custom configuration. It is protected by [heimdall](https://github.com/metakgp/heimdall), allowing access only to KGPians. Following are the features enabled in this ntfy instance (refer [server.yml](./server.yml)):
+Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries news and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad serves news (noticies) to the KGP community. It is a self-hosted [ntfy.sh](https://ntfy.sh) instance with custom configuration. It is protected by [heimdall](https://github.com/metakgp/heimdall), allowing access only to KGPians.<br> 
+Following are the features enabled in this ntfy instance (refer [server.yml](./server.yml)):
 
 - Message Caching
 - Attachments
@@ -65,6 +66,21 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
 - Web Interface
 - Webpush notifications
 - Logging
+- Login/Signup
+- iOS Push Notifications
+- Rate Limiting
+
+### Custom User Registration
+
+To make the user registration process as seamless as possible we have implemented a custom logic ([frontend](./frontend/) & [backend](./backend/)). The frontend is hosted via github pages with the url - [https://naarad-signup.metakgp.org](https://naarad-signup.metakgp.org), mapped to [https://naarad.metakgp.org/signup](https://naarad.metakgp.org/signup). The logic is as follows:
+- User must be authenticated via [heimdall](http://heimdall.metakgp.org)
+- Now the magic happens in the backend and registers the user with:
+   - `username`: Taken from their institute email
+   - `password`: Auto generated
+- The credentials are sent to their institute email
+
+> [!Tip]
+> To understand the full process of accessing the service, refer [this](./SUBSCRIPTION_INSTRUCTION.md).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -87,15 +103,16 @@ _Now that the environment has been set up and configured to properly compile and
    ```sh
    git clone https://github.com/metakgp/naarad.git
    ```
-2. Build the docker container
+2. Copy `.env.example` as `.env` and fill in the required values
+3. Build the docker container
    ```sh
    sudo docker compose build
    ```
-3. Start the container
+4. Start the container
    ```sh
    sudo docker compose up -d
    ```
-4. The project will be locally deployed at `http://localhost:8000/`
+5. The project will be locally deployed at `http://localhost:8000/`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
