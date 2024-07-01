@@ -52,7 +52,7 @@
 ## About The Project
 <div align="center">
   <a href="https://github.com/metakgp/naarad">
-    <img width="80%" alt="image" src="https://github.com/metakgp/naarad/assets/86282911/f3847ce9-08ab-4235-8aff-989b8e5841c6">
+    <img width="80%" alt="image" src="https://github.com/metakgp/naarad/assets/86282911/21633e13-eb62-4ed6-b188-77514dfdc414">
   </a>
 </div>
 
