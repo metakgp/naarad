@@ -37,6 +37,10 @@ var jwtValidateResp struct {
 	Email string `json:"email"`
 }
 
+var healthResponse struct {
+    Healthy bool   `json:"healthy"`
+}
+
 func PasswordGenerator(passwordLength int) string {
 	password := ""
 	source := rand.NewSource(time.Now().UnixNano())
@@ -158,6 +162,26 @@ func register(res http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func healthCheck(res http.ResponseWriter, req *http.Request) {
+    res.Header().Set("Content-Type", "application/json")
+
+	// Check database connection
+	err := db.Ping()
+	if err != nil {
+		healthResponse.Healthy = false
+	} else {
+		healthResponse.Healthy = true
+	}
+
+	if !healthResponse.Healthy {
+		res.WriteHeader(http.StatusServiceUnavailable)
+	} else {
+		res.WriteHeader(http.StatusOK)
+	}
+
+    json.NewEncoder(res).Encode(healthResponse)
+}
+
 func main() {
 	initMailer()
 
@@ -184,6 +208,7 @@ func main() {
 		panic(err)
 	}
 
+	http.HandleFunc("GET /health", healthCheck)
 	http.HandleFunc("GET /register", register)
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"https://naarad.metakgp.org", "https://naarad-signup.metakgp.org", "http://localhost:3000"},
