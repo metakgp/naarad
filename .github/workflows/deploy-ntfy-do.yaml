@@ -1,6 +1,8 @@
 name: Deploy self-hosted ntfy and backend custom signup layer
 
 on:
+    repository_dispatch:
+        types: [trigger_naarad_deployment]
     push:
         branches:
             - "main"
