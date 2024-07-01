@@ -139,3 +139,23 @@ jobs:
                       cd "${PROJECT_DIR}/"
                       sudo docker compose down
                       sudo docker compose up -d
+
+    healthcheck:
+        name: Healthcheck Stage
+        needs: deploy
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check for the health of Naarad
+              run: |
+                  while true; do
+                      result=$(curl -s -kX GET https://naarad.metakgp.org/v1/health | jq '.healthy')
+                      
+                      if [ "$result" = "true" ]; then
+                          echo "Health check passed. Service is healthy."
+                          break
+                      else
+                          echo "Service not healthy yet. Retrying in 5 seconds..."
+                          sleep 5
+                      fi
+                  done
