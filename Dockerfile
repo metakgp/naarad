@@ -1,5 +1,7 @@
 FROM metakgporg/naarad-ntfy
 
+ENV TZ="Asia/Kolkata"
+
 # Copy metaploy configuration
 COPY metaploy/naarad.metaploy.conf /
 COPY metaploy/postinstall.sh /
