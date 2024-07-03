@@ -375,5 +375,5 @@ visitor-attachment-daily-bandwidth-limit: "50M"
 #
 log-level: debug
 log-format: json
-log-file: /var/log/ntfy.log
+log-file: /dev/stdout
 # log-level-overrides:
