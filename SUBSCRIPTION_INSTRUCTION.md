@@ -4,7 +4,7 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
 
 ## User Registration
 
-1. Visit [Naarad Signup](https://naarad.metakgp.org/signup) page
+1. Visit [Naarad Signup](https://naarad-signup.metakgp.org/) page
 2. You will be prompted to enter your institute email
 3. Once email is entered, you will receive a verification OTP on the provided email
 4. Enter the OTP in the available field and click the `Verify` button
@@ -123,3 +123,30 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 <div align="center">
   <img src="https://github.com/metakgp/naarad/assets/86282911/647f290d-51e8-4340-8033-61e47e326f74">
 </div>
+
+## Enforced Campus Login
+
+Since, CDC period (for internships) starts during the summer vacation and majority of the students are not on campus, [login](#user-login) is open from any network. One day after the **CDC travel** window is over, following changes are implemented:
+- User database is deleted
+- __User Signup & Login__ are restricted only from campus network
+- Once logged in, from campus network, the app is functional on all networks
+
+> [!Warning]
+> Make sure you are connected to campus network, before following ahead in the documentation.
+
+Users have to initiate the registration process again and receive new credentials. This time, just visit [https://naarad.metakgp.org/signup](https://naarad-signup.metakgp.org). You will receive the new credentials on your institute email within a few seconds. 
+
+It's now time to re-login with your new credentials, in-order to do that first remove the previous sessions from your webapp and app.
+
+### Webapp
+
+1. Click on the account icon on top right corner
+2. Logout the current user
+3. Visit [Naarad Login](https://naarad.metakgp.org/login)
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/d20e5684-4831-439e-a81c-28a7f23aff9c">
+</div>
+
+### Mobile
+
