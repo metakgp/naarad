@@ -126,10 +126,10 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 ## Enforced Campus Login
 
-Since, CDC period (for internships) starts during the summer vacation and majority of the students are not on campus, [login](#user-login) is open from any network. One day after the **CDC travel** window is over, following changes are implemented:
+Since, CDC period (for internships) starts during the summer vacation and majority of the students are not on campus during that time, [login](#user-login) is open from any network. One day after the **CDC travel window** is over, following changes are implemented:
 - User database is deleted
-- __User Signup & Login__ are restricted only from campus network
-- Once logged in, from campus network, the app is functional on all networks
+- __User Signup & Login__ are restricted only to campus network
+- Once logged in, via campus network, the app is functional on all networks
 
 > [!Warning]
 > Make sure you are connected to campus network, before following ahead in the documentation.
@@ -150,3 +150,18 @@ It's now time to re-login with your new credentials, in-order to do that first r
 
 ### Mobile
 
+1. Press the _three-dots_ on top-right corner
+2. Choose `Settings` option from the context-menu
+3. Select `Manage Users` in the _General_ section below
+4. Press on the user corresponding to your institute email (auto-generated username, which you received on your email)
+5. A dialogue will appear, select `Delete User` there
+6. Now go back to the home screen, select the `kgp-mftp` topic and press the _three-dots_ there on top-right corner
+7. Choose `Unsubscribe` option from the context-menu
+8. A dialogue will appear, select `Delete Permanently` there
+9. Now that the user has been removed properly, follow the [Subscribing to MFTP](#subscribing-to-mftp) section once again while being connected on campus network
+
+| ![](https://github.com/metakgp/naarad/assets/86282911/34a7e162-68b0-454e-98a5-b61bac62e898) | ![](https://github.com/metakgp/naarad/assets/86282911/4beb8bf5-bc28-4164-a4a4-f05f04644fe9) |
+| ---------------------------------- | -------------------------------- |
+| ![](https://github.com/metakgp/naarad/assets/86282911/6606ee7e-030f-48ec-b886-fe143bcbcbb7) | ![](https://github.com/metakgp/naarad/assets/86282911/3ed6ec9a-b57d-441c-8933-3365ebeba287) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/0829d4d6-fc88-4d24-8dbb-75810e800c40) | ![](https://github.com/metakgp/naarad/assets/86282911/cfb77e27-0e93-4897-9480-1530eaa67e38) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/8f366eb4-0cfb-4ee5-a272-8c0efe362d59) | ![](https://github.com/metakgp/naarad/assets/86282911/461f550d-9148-43a1-bc24-c29f1b47b271) |
