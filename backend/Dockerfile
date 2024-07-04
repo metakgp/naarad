@@ -8,20 +8,20 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=1 GOOS=linux go build -o /app --tags "fts5" -a -ldflags '-linkmode external -extldflags "-static"' .
+RUN CGO_ENABLED=1 GOOS=linux go build -o ./build -a -ldflags '-linkmode external -extldflags "-static"'
 
-FROM busybox:1.36-musl
+FROM alpine:latest AS app
 
-RUN mkdir -p /etc/ssl/certs
+RUN apk --no-cache add ca-certificates tzdata bash
 
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+ENV TZ="Asia/Kolkata"
 
-COPY metaploy/naarad-api.metaploy.conf /
+WORKDIR /app
 
-COPY metaploy/postinstall.sh /
+COPY metaploy/ ./
 
-RUN chmod +x /postinstall.sh
+RUN chmod +x ./postinstall.sh
 
-COPY --from=builder /app /app
+COPY --from=builder /src/build .
 
-CMD ["/postinstall.sh", "/app"]
+CMD ["./postinstall.sh", "./build"]
