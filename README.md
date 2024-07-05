@@ -56,7 +56,7 @@
   </a>
 </div>
 
-Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries news and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad serves news (noticies) to the KGP community. It is a self-hosted [ntfy.sh](https://ntfy.sh) instance with custom configuration. It is protected by [heimdall](https://github.com/metakgp/heimdall), allowing access only to KGPians.<br> 
+Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries news and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad serves news (notices) to the KGP community. It is a self-hosted [ntfy.sh](https://ntfy.sh) instance with custom configuration. It is protected by [heimdall](https://github.com/metakgp/heimdall), allowing access only to KGPians.<br> 
 Following are the features enabled in this ntfy instance (refer [server.yml](./server.yml)):
 
 - Message Caching
@@ -80,7 +80,7 @@ To make the user registration process as seamless as possible we have implemente
 - The credentials are sent to their institute email
 
 > [!Tip]
-> To understand the full process of accessing the service, refer [this](./SUBSCRIPTION_INSTRUCTION.md).
+> To understand the full process of accessing the service, refer [Subscription Instruction](./SUBSCRIPTION_INSTRUCTION.md) guide.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
