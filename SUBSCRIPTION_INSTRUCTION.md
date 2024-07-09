@@ -117,6 +117,9 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 In order to receive unrestricted real-time notifications on the mobile applications, follow the steps below for your specifc device(s).
 
+> [!Tip]
+> It is also recommended to disable "Battery Saver" to not have any unwanted delay.
+
 #### iOS
 
 Enable `Background App Refresh` for the __ntfy__ app on both __Wifi & mobile data__.
