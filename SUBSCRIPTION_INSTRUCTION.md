@@ -113,6 +113,41 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 | ![](https://github.com/metakgp/naarad/assets/86282911/a3cfdff6-2267-4561-9c7c-bde645afe56f) | ![](https://github.com/metakgp/naarad/assets/86282911/4402c5e0-6a67-4381-af73-6cc01dede855) |
 | ---------------------------------- | -------------------------------- |
 
+### Disabling Battery Optimisations
+
+In order to receive unrestricted real-time notifications on the mobile applications, follow the steps below for your specifc device(s).
+
+> [!Tip]
+> It is also recommended to disable "Battery Saver" to not have any unwanted delay.
+
+#### iOS
+
+Enable `Background App Refresh` for the __ntfy__ app on both __Wifi & mobile data__.
+
+> [!Note]
+> Observe the following differences before watching the video:
+> - Make sure the setting is enabled for both __Wifi & Mobile Data__
+> - Make sure it is enabled for __NTFY__ app
+> - If you don't find the setting as shown in the video, search for a similar setting for your version of iOS
+
+Here's the general tutorial to [Turn On Background App Refresh in iOS](https://www.youtube.com/watch?v=QYh62JM-Aiw).
+
+#### Android
+
+Disable `Battery Optimisation` for the __ntfy__ app.
+
+> [!Warning]
+> This particular setting will differ from device to device. The place it is located at, the way it is written, everything might differ slightly from one vendor to another vendor. So make sure:
+> - When you search on the web, you provide your device model - for better results
+> - Search for a similar setting on your own for your device manually
+
+Here are the general tutorials, to unrestrict background app activity:
+- [From `APP INFO`](https://www.youtube.com/watch?v=QEkSJgurosE)
+- [From `Settings`](https://www.youtube.com/watch?v=M5i6lD9zAXE)
+
+> [!Note]
+> Make sure you follow both the ways and see that both the methods are in sync (have the same thing - `Unrestricted Battery Usage`)
+
 ## Changing User Password
 
 1. Click on `Account` on the left pane of the screen
