@@ -22,7 +22,7 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
 
 ## User Registration
 
-1. Visit [Naarad Signup](https://naarad.metakgp.org/signup) page
+1. Visit [Naarad Signup](https://naarad-signup.metakgp.org/) page
 2. You will be prompted to enter your institute email
 3. Once email is entered, you will receive a verification OTP on the provided email
 4. Enter the OTP in the available field and click the `Verify` button
@@ -190,3 +190,45 @@ Here are the general tutorials, to unrestrict background app activity:
 <div align="center">
   <img src="https://github.com/metakgp/naarad/assets/86282911/647f290d-51e8-4340-8033-61e47e326f74">
 </div>
+
+## Enforced Campus Signup and Login
+
+Since, CDC period (for internships) starts during the summer vacations and majority of the students are not on campus during that time, [singup](#user-registration) and [login](#user-login) are open from any network. One day after the **CDC travel window** is over, following changes are implemented:
+- User database is deleted
+- __User Signup & Login__ are restricted, to be possible only via campus network
+- Once signed up and logged in, via campus network, the app is functional on all networks
+
+> [!Warning]
+> Make sure you are connected to campus network, before following ahead in the documentation.
+
+Users have to initiate the registration process again and receive new credentials. This time, just visit [https://naarad.metakgp.org/signup](https://naarad-signup.metakgp.org). You will receive the new credentials on your institute email within a few seconds. 
+
+It's now time to re-login with your new credentials, in-order to do that first remove the previous sessions from your webapp and app.
+
+### Webapp
+
+1. Click on the account icon on top right corner
+2. Logout the current user
+3. Visit [Naarad Login](https://naarad.metakgp.org/login)
+
+<div align="center">
+  <img src="https://github.com/metakgp/naarad/assets/86282911/d20e5684-4831-439e-a81c-28a7f23aff9c">
+</div>
+
+### Mobile
+
+1. Press the _three-dots_ on the top-right corner
+2. Choose the `Settings` option from the context-menu
+3. Select the `Manage Users` property in the _General_ section below
+4. Press on the user corresponding to your institute email (auto-generated username, which you received on your email)
+5. A dialogue will appear there, select the `Delete User` button
+6. Now go back to the home screen, select the `kgp-mftp` topic and press the _three-dots_ there on the top-right corner
+7. Choose the `Unsubscribe` option from the context-menu
+8. A dialogue will appear the, select the `Delete Permanently`buttonthere
+9. Now that the user has been removed properly, follow the [Subscribing to MFTP](#subscribing-to-mftp) section once again while being connected to the campus network
+
+| ![](https://github.com/metakgp/naarad/assets/86282911/34a7e162-68b0-454e-98a5-b61bac62e898) | ![](https://github.com/metakgp/naarad/assets/86282911/4beb8bf5-bc28-4164-a4a4-f05f04644fe9) |
+| ---------------------------------- | -------------------------------- |
+| ![](https://github.com/metakgp/naarad/assets/86282911/6606ee7e-030f-48ec-b886-fe143bcbcbb7) | ![](https://github.com/metakgp/naarad/assets/86282911/3ed6ec9a-b57d-441c-8933-3365ebeba287) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/0829d4d6-fc88-4d24-8dbb-75810e800c40) | ![](https://github.com/metakgp/naarad/assets/86282911/cfb77e27-0e93-4897-9480-1530eaa67e38) |
+| ![](https://github.com/metakgp/naarad/assets/86282911/8f366eb4-0cfb-4ee5-a272-8c0efe362d59) | ![](https://github.com/metakgp/naarad/assets/86282911/461f550d-9148-43a1-bc24-c29f1b47b271) |
