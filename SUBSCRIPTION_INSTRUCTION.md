@@ -113,6 +113,20 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 | ![](https://github.com/metakgp/naarad/assets/86282911/a3cfdff6-2267-4561-9c7c-bde645afe56f) | ![](https://github.com/metakgp/naarad/assets/86282911/4402c5e0-6a67-4381-af73-6cc01dede855) |
 | ---------------------------------- | -------------------------------- |
 
+### Downloading Attachment
+
+Attachment URLs are protected by [heimdall](https://heimdall.metakgp.org/). Heimdall sessions are created when you authorise via your institute email, as done during steps 2,3,4 while [registering a user](#user-registration). Hence, it is not possible to directly dwonlaod the attachments via the mobile application, while, the process for the same on webapp is straightforward. Follow the steps below to download the attachment via your mobile devices.
+
+1. Tap on the attachment banner
+2. A context-menu will appear, tap on `Copy URL`. You will receive a toast message, saying `URL copied to clipboard`
+3. Open your choice of browser on your mobile device and paste the copied URL
+4. You will be redirected to heimdall. Authorise with your institute email as done during the steps 2,3,4 while [registering a user](#user-registration). This is a one time step
+5. The pdf will be downloaded locally
+
+| ![](https://github.com/user-attachments/assets/f1876107-fb80-4588-ab40-c80f51e07c1f) | ![](https://github.com/user-attachments/assets/68e5e414-4190-4fc9-9914-4c1d265c6c68) |
+|-------|-------|
+| ![](https://github.com/user-attachments/assets/1744c621-52a0-43a4-b3e2-bd745ce78678) | ![](https://github.com/user-attachments/assets/5911bdf1-1a98-4459-a938-5c4169aa0bfe) |
+
 ### Disabling Battery Optimisations
 
 In order to receive unrestricted real-time notifications on the mobile applications, follow the steps below for your specifc device(s).
