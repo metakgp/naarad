@@ -2,6 +2,24 @@
 
 Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divinity, famous in Hindu traditions as a travelling musician and storyteller, who carries **news** and enlightening wisdom ([source](https://en.wikipedia.org/wiki/Narada)). Our naarad delivers news (noticies) to the KGP community.
 
+<details>
+<summary>Table of Contents</summary>
+
+- [User Registration](#user-registration)
+- [Webapp](#webapp)
+    - [User Login](#user-login)
+    - [Configuration Notification](#configuring-notification)
+        - [Enabling WebPush](#enabling-webpush)
+    - [Subscribing to MFTP](#subscribing-to-mftp)
+    - [Mobile Application (Android, iOS)](#mobile-application-android-ios)
+        - [Download NTFY application](#download-ntfy-application)
+        - [Subscribing to MFTP](#subscribing-to-mftp-1)
+        - [Configuring the topic](#configuring-the-topic)
+        - [Downloading Attachment](#downloading-attachment)
+        - [Disabling Battery Optimisations](#disabling-battery-optimisations)
+- [Changing User Password](#changing-user-password)
+</details>
+
 ## User Registration
 
 1. Visit [Naarad Signup](https://naarad.metakgp.org/signup) page
