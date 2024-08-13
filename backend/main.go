@@ -127,9 +127,20 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// Generate user credentials
+	// Generate username from institute email
 	userEmail := jwtValidateResp.Email
 	username := strings.TrimSuffix(userEmail, "@kgpian.iitkgp.ac.in")
+
+	// Check if user already exists or not
+	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, username)
+	if success := rowD.Scan(&userId); success == nil {
+		// success is nil when the user already is registered
+		fmt.Println("[INFO] ~ User Already Registered: ", username)
+		http.Error(res, "[INFO] ~ User Already Registered", http.StatusTeapot)
+		return
+	}
+
+	// Generate user password
 	password := PasswordGenerator(pswdSize)
 
 	// Create user using ntfy api
@@ -145,18 +156,14 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode == 409 {
-		fmt.Println("[INFO] ~ User Already Registered: ", username)
-		http.Error(res, "[INFO] ~ User Already Registered", resp.StatusCode)
-		return
-	} else if resp.StatusCode != 200 {
+	if resp.StatusCode != 200 {
 		fmt.Println("[ERROR] ~ Registering User: ", username)
 		http.Error(res, "[ERROR] ~ Registering User", resp.StatusCode)
 		return
 	}
 
 	// Get the userid from sqlite db
-	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, username)
+	rowD = db.QueryRow(`SELECT id FROM user WHERE user=?`, username)
 	if err = rowD.Scan(&userId); err != nil {
 		fmt.Println("[ERROR] ~ Fetching UserId ~", username, ": ", err.Error())
 		http.Error(res, "Internal Server Error", http.StatusInternalServerError)
@@ -171,7 +178,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// Provide read-only access for kgp-* channels to the user
+	// Provide read-only access for st_* channels to the user
 	queryGenAccess = fmt.Sprintf(`INSERT INTO user_access VALUES("%s", "st_%%", 1, 0, "")`, userId)
 	if _, err = db.Exec(queryGenAccess); err != nil {
 		fmt.Println("[ERROR] ~ Granting Access to (st_*) ~", username, ": ", err.Error())
