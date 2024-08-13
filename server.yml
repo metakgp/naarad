@@ -255,7 +255,7 @@ upstream-base-url: "https://ntfy.sh"
 
 # Rate limiting: Total number of topics before the server rejects new topics.
 #
-global-topic-limit: 6
+global-topic-limit: 8
 
 # Rate limiting: Number of subscriptions per visitor (IP address)
 #
