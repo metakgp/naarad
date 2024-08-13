@@ -42,7 +42,7 @@ export const Register: Component = () => {
                             { duration: 3000 }
                         );
                     }
-                } else if (data.status === 409) {
+                } else if (data.status === 409 || data.status === 418) {
                     setIsLoad(false);
                     setStatus("User Already Registered");
                     setMsg("Search your institute email for credentials");
