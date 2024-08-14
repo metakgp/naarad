@@ -129,7 +129,7 @@ func register(res http.ResponseWriter, req *http.Request) {
 
 	// Generate username from institute email
 	userEmail := jwtValidateResp.Email
-	username := strings.TrimSuffix(userEmail, "@kgpian.iitkgp.ac.in")
+	username := strings.Split(userEmail, "@")[0]
 
 	// Check if user already exists or not
 	rowD := db.QueryRow(`SELECT id FROM user WHERE user=?`, username)
