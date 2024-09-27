@@ -17,7 +17,7 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
         - [Configuring the topic](#configuring-the-topic)
         - [Downloading Attachment](#downloading-attachment)
         - [Disabling Battery Optimisations](#disabling-battery-optimisations)
-- [Changing User Password](#changing-user-password)
+<!-- - [Changing User Password](#changing-user-password) -->
 </details>
 
 ## User Registration
@@ -180,6 +180,7 @@ Here are the general tutorials, to unrestrict background app activity:
 > [!Note]
 > Make sure you follow both the ways and see that both the methods are in sync (have the same thing - `Unrestricted Battery Usage`)
 
+<!--
 ## Changing User Password
 
 1. Click on `Account` on the left pane of the screen
@@ -190,3 +191,4 @@ Here are the general tutorials, to unrestrict background app activity:
 <div align="center">
   <img src="https://github.com/metakgp/naarad/assets/86282911/647f290d-51e8-4340-8033-61e47e326f74">
 </div>
+-->
