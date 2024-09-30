@@ -268,9 +268,9 @@ global-topic-limit: 10
 #   exempt from request rate limiting. Hostnames are resolved at the time the server is started.
 #   Example: "1.2.3.4,ntfy.example.com,8.7.6.0/24"
 #
-visitor-request-limit-burst: 30
-visitor-request-limit-replenish: "5s"
-visitor-request-limit-exempt-hosts: ""
+# visitor-request-limit-burst: 30
+# visitor-request-limit-replenish: "5s"
+# visitor-request-limit-exempt-hosts: ""
 
 # Rate limiting: Hard daily limit of messages per visitor and day. The limit is reset
 # every day at midnight UTC. If the limit is not set (or set to zero), the request
