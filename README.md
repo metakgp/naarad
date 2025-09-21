@@ -144,6 +144,12 @@ _Now that the environment has been set up and configured to properly compile and
 
 The currently active maintainer(s) of this project.
 
+- [Dhanvith Nayak](https://github.com/dhanvithnayak)
+
+### Past Maintainer(s)
+
+Previous maintainer(s) of this project.
+
 - [Chirag Ghosh](https://github.com/chirag-ghosh)
 - [Arpit Bhardwaj](https://github.com/proffapt)
 
