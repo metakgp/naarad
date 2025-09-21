@@ -146,6 +146,13 @@ The currently active maintainer(s) of this project.
 
 - [Dhanvith Nayak](https://github.com/dhanvithnayak)
 
+### Past Maintainer(s)
+
+Previous maintainer(s) of this project.
+
+- [Chirag Ghosh](https://github.com/chirag-ghosh)
+- [Arpit Bhardwaj](https://github.com/proffapt)
+
 ### Creator(s)
 
 Honoring the original creator(s) and ideator(s) of this project.
