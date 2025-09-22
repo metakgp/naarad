@@ -145,6 +145,7 @@ _Now that the environment has been set up and configured to properly compile and
 The currently active maintainer(s) of this project.
 
 - [Dhanvith Nayak](https://github.com/dhanvithnayak)
+- [Bikram Ghuku](https://github.com/Bikram-ghuku)
 
 ### Past Maintainer(s)
 
