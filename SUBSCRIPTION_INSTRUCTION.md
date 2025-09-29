@@ -11,12 +11,13 @@ Narada (Sanskrit: नारद, IAST: Nārada), or Narada Muni, is a sage-divini
     - [Configuration Notification](#configuring-notification)
         - [Enabling WebPush](#enabling-webpush)
     - [Subscribing to MFTP](#subscribing-to-mftp)
-    - [Mobile Application (Android, iOS)](#mobile-application-android-ios)
-        - [Download NTFY application](#download-ntfy-application)
-        - [Subscribing to MFTP](#subscribing-to-mftp-1)
-        - [Configuring the topic](#configuring-the-topic)
-        - [Downloading Attachment](#downloading-attachment)
-        - [Disabling Battery Optimisations](#disabling-battery-optimisations)
+- [Mobile Application (Android, iOS)](#mobile-application-android-ios)
+    - [Download NTFY application](#download-ntfy-application)
+    - [Subscribing to MFTP](#subscribing-to-mftp-1)
+    - [Configuring the topic](#configuring-the-topic)
+    - [Downloading Attachment](#downloading-attachment)
+    - [Disabling Battery Optimisations](#disabling-battery-optimisations)
+- [Filtering Notices](#filtering-notices)
 <!-- - [Changing User Password](#changing-user-password) -->
 </details>
 
@@ -179,6 +180,15 @@ Here are the general tutorials, to unrestrict background app activity:
 
 > [!Note]
 > Make sure you follow both the ways and see that both the methods are in sync (have the same thing - `Unrestricted Battery Usage`)
+
+## Filtering Notices
+
+You can subscribe to a specific type of notice by subscribing to its dedicated topic, just like you did with `kgp-mftp`.
+The available topics are:
+
+1. `kgp-mftp-internship` – Internship notices only
+2. `kgp-mftp-ppo` – PPO notices only
+3. `kgp-mftp-placement` – Placement notices only
 
 <!--
 ## Changing User Password
