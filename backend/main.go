@@ -1,11 +1,12 @@
 package main
 
 import (
+	"crypto/rand"
 	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
-	"math/rand"
+	"math/big"
 	"net/http"
 	"os"
 	"strconv"
@@ -75,30 +76,51 @@ func LoggerMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func PasswordGenerator(passwordLength int) string {
-	password := ""
-	source := rand.NewSource(time.Now().UnixNano())
-	randGen := rand.New(source)
-	for n := 0; n < passwordLength; n++ {
-		randNum := randGen.Intn(4)
-
-		switch randNum {
-		case 0:
-			randCharNum := randGen.Intn(len(lowerCase))
-			password += string(lowerCase[randCharNum])
-		case 1:
-			randCharNum := randGen.Intn(len(upperCase))
-			password += string(upperCase[randCharNum])
-		case 2:
-			randCharNum := randGen.Intn(len(numbers))
-			password += string(numbers[randCharNum])
-		case 3:
-			randCharNum := randGen.Intn(len(specialChar))
-			password += string(specialChar[randCharNum])
-		}
+// PasswordGenerator generates a cryptographically secure random password
+// using crypto/rand instead of math/rand for better security
+func PasswordGenerator(passwordLength int) (string, error) {
+	if passwordLength < 8 {
+		return "", fmt.Errorf("password length must be at least 8 characters")
 	}
 
-	return password
+	// Combine all character sets
+	allChars := lowerCase + upperCase + numbers + specialChar
+	allCharsLen := big.NewInt(int64(len(allChars)))
+
+	password := make([]byte, passwordLength)
+	
+	// Ensure at least one character from each category
+	categories := []string{lowerCase, upperCase, numbers, specialChar}
+	for i, category := range categories {
+		if i >= passwordLength {
+			break
+		}
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(category))))
+		if err != nil {
+			return "", fmt.Errorf("failed to generate random number: %v", err)
+		}
+		password[i] = category[n.Int64()]
+	}
+
+	// Fill remaining positions with random characters from all sets
+	for i := len(categories); i < passwordLength; i++ {
+		n, err := rand.Int(rand.Reader, allCharsLen)
+		if err != nil {
+			return "", fmt.Errorf("failed to generate random number: %v", err)
+		}
+		password[i] = allChars[n.Int64()]
+	}
+
+	// Shuffle the password to avoid predictable patterns
+	for i := passwordLength - 1; i > 0; i-- {
+		j, err := rand.Int(rand.Reader, big.NewInt(int64(i+1)))
+		if err != nil {
+			return "", fmt.Errorf("failed to shuffle password: %v", err)
+		}
+		password[i], password[j.Int64()] = password[j.Int64()], password[i]
+	}
+
+	return string(password), nil
 }
 
 func register(res http.ResponseWriter, req *http.Request) {
@@ -113,7 +135,9 @@ func register(res http.ResponseWriter, req *http.Request) {
 	// Get email from JWT
 	reqEmail, _ := http.NewRequest("GET", "https://heimdall-api.metakgp.org/validate-jwt", nil)
 	reqEmail.Header.Set("Cookie", fmt.Sprintf("heimdall=%s", tokenString))
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: 10 * time.Second, // Add timeout to prevent hanging requests
+	}
 	resp, err := client.Do(reqEmail)
 	if err != nil {
 		fmt.Println("[ERROR] ~ Validating Heimdall Token ~", tokenString, ": ", err.Error())
@@ -140,8 +164,13 @@ func register(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	// Generate user password
-	password := PasswordGenerator(pswdSize)
+	// Generate user password with cryptographically secure random
+	password, err := PasswordGenerator(pswdSize)
+	if err != nil {
+		fmt.Println("[ERROR] ~ Generating Password ~", username, ": ", err.Error())
+		http.Error(res, "[ERROR] ~ Generating Password", http.StatusInternalServerError)
+		return
+	}
 
 	// Create user using ntfy api
 	signupData := fmt.Sprintf(`{"username": "%s", "password": "%s"}`, username, password)
