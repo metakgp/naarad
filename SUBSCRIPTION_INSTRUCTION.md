@@ -110,10 +110,13 @@ If the [automatic](#automatic) method doesn't work, then you can do it manually 
 
 ### Subscribing to MFTP
 
+> [!Important]
+> **For iOS Users:** To receive instant push notifications, you must change the **Default Server** in the app settings to `https://naarad.metakgp.org` before subscribing. You can then subscribe to the topic directly without checking "Use another server".
+
 0. Make sure to click `Enable Now` for the banner regarding `Switching to WebSockets...`
 1. Click on `+` icon in bottom right corner
 2. Enter topic name as: `kgp-mftp`
-3. Check `Use another server`
+3. Check `Use another server` (for Android, or if not configured as Default Server)
 4. Replace `https://ntfy.sh` with `https://naarad.metakgp.org`
 5. Press the `Subscribe` button
 6. It will now prompt you to Login, enter the credentials received during [user registration](#user-registration)
