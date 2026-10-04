@@ -1,0 +1,102 @@
+.guide {
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+}
+
+.guide-header {
+    max-width: 960px;
+    margin: 0 auto 2rem;
+    text-align: right;
+
+    a {
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
+.guide-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #212121;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    line-height: 1.6;
+
+    h1, h2, h3, h4 {
+        margin: 1.75rem 0 0.75rem;
+        line-height: 1.2;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 2.5rem;
+    }
+
+    p, ol, ul, blockquote, table, details {
+        margin: 1rem 0;
+    }
+
+    ol, ul {
+        padding-left: 1.5rem;
+    }
+
+    a {
+        color: #7dd3fc;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    blockquote {
+        padding: 0.75rem 1rem;
+        border-left: 4px solid #7dd3fc;
+        background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    code {
+        padding: 0.1rem 0.3rem;
+        border-radius: 0.25rem;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    pre {
+        overflow-x: auto;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: #111;
+    }
+
+    pre code {
+        padding: 0;
+        background: transparent;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #475569;
+        text-align: left;
+    }
+}
+
+@media (max-width: 640px) {
+    .guide {
+        padding: 1rem 0.75rem 2rem;
+    }
+
+    .guide-content {
+        padding: 1.25rem;
+    }
+
+    .guide-content h1 {
+        font-size: 2rem;
+    }
+}

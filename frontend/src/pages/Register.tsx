@@ -114,6 +114,9 @@ export const Register: Component = () => {
                     <div class="reg-status-title">{getStatus()}</div>
                     <div class="reg-status-text">{`${getMsg()}`}</div>
                 </div>
+                <a class="reg-guide-link" href="/guide">
+                    Read the subscription guide
+                </a>
                 <div class="reg-footer">
                     <p class="reg-footer">
                         Made with ❤️ and {"</>"}

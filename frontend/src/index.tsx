@@ -12,4 +12,11 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
+const redirect = sessionStorage.getItem("naarad-spa-redirect");
+
+if (redirect) {
+  sessionStorage.removeItem("naarad-spa-redirect");
+  window.history.replaceState(null, "", redirect);
+}
+
 render(() => <App />, root!);

@@ -8,6 +8,9 @@ dependencies:
   '@solidjs/router':
     specifier: ^0.13.6
     version: 0.13.6(solid-js@1.8.18)
+  marked:
+    specifier: ^18.0.14
+    version: 18.0.14
   solid-js:
     specifier: ^1.8.11
     version: 1.8.18
@@ -1121,6 +1124,12 @@ packages:
     dependencies:
       yallist: 3.1.1
     dev: true
+
+  /marked@18.0.14:
+    resolution: {integrity: sha512-mBHK6FBHuBAlhgRe88w9F0O1AbwwXJUcQibUbC/QcdTbVGAD7aWza+xt3N6oT/jCZx3/OMeS+8rnuiHZcQ9s7A==}
+    engines: {node: '>= 20'}
+    hasBin: true
+    dev: false
 
   /merge-anything@5.1.7:
     resolution: {integrity: sha512-eRtbOb1N5iyH0tkQDAoQ4Ipsp/5qSR79Dzrz8hEPxRX10RWWR/iQXdoKmBSRCThY1Fh5EhISDtpSc93fpxUniQ==}

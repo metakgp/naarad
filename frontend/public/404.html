@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Naarad</title>
+    <script>
+      const path = window.location.pathname.replace(/\/+$/, "");
+
+      if (path === "/guide") {
+        sessionStorage.setItem(
+          "naarad-spa-redirect",
+          window.location.pathname +
+            window.location.search +
+            window.location.hash
+        );
+        window.location.replace("/");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>Page not found.</p>
+  </body>
+</html>
